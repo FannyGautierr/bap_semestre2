@@ -13,24 +13,32 @@ $ cd bap_semestre2
 ````shell
 $ composer install
 ````
+4. Install node dependancies
+````shell
+$ npm install
+````
 
-4. Duplicate the `.env` file and name it `.env.local`
-5. Update the `DATABASE_URL` variable in the `.env.local` file with your database credentials.
-6. Create the database
+5. Duplicate the `.env` file and name it `.env.local`
+6. Update the `DATABASE_URL` variable in the `.env.local` file with your database credentials.
+7. Create the database
 
 ````shell
 $ php bin/console doctrine:database:create
 ````
-7. Run the migrations
+8. Run the migrations
 ````shell
 $ php bin/console doctrine:migrations:migrate
 ````
-8. Run the server
+9. Run the server
 ````shell 
 $ symfony serve
 ````
-9. Go to http://localhost:8000
+10. Run encore build
+````shell 
+$ npm run watch
+````
+11. Go to http://localhost:8000
 
-10. Enjoy!
+12. Enjoy!
 
 

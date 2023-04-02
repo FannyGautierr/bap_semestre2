@@ -11,17 +11,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(
-        private ChartBuilderInterface $chartBuilder,
+        public ChartBuilderInterface $chartBuilder,
     ) {
     }
 
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
+        $chart = $this->makeChart();
+
+
+
+        return $this->render('admin/index.html.twig', [
+            'chart' => $chart,
+        ]);
+
+    }
+
+    public function makeChart() {
         $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
 
         $chart->setData([
@@ -33,19 +45,28 @@ class DashboardController extends AbstractDashboardController
                     'borderColor' => 'rgb(255, 99, 132)',
                     'data' => [0, 10, 5, 2, 20, 30, 45],
                 ],
-                [
-                    'label' => 'My Second dataset',
-                    'backgroundColor' => 'rgb(54, 162, 235)',
-                    'borderColor' => 'rgb(54, 162, 235)',
-                    'data' => [0, 20, 10, 5, 15, 25, 40],
+            ],
+        ]);
+
+        $chart->setOptions([
+            'scales' => [
+                'y' => [
+                    'suggestedMin' => 0,
+                    'suggestedMax' => 100,
                 ],
             ],
         ]);
 
-        return $this->render('admin/index.html.twig', [
-            'chart' => $chart,
-        ]);
+        return $chart;
+    }
 
+    public function configureAssets(): Assets
+    {
+        $assets = parent::configureAssets();
+
+        $assets->addWebpackEncoreEntry('app');
+
+        return $assets;
     }
 
     public function configureDashboard(): Dashboard

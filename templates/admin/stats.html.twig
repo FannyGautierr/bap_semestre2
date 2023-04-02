@@ -1,0 +1,21 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block page_title %}
+    {{ survey.name }} Statistiques
+{% endblock %}
+{% block content_title %}{{ survey.name }}{% endblock %}
+{% block main %}
+
+    <p>Graphique :</p>
+
+    {{ render_chart(chart) }}
+
+    <div>
+        <h3>Questions :</h3>
+        <ul>
+            {% for question in survey.questions %}
+                <li>{{ question.question }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

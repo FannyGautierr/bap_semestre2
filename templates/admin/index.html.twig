@@ -1,0 +1,11 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title %}
+    Dashboard
+{% endblock %}
+
+{% block content_title %}Statistiques{% endblock %}
+
+{% block main %}
+    {{ render_chart(chart) }}
+{% endblock %}

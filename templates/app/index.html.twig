@@ -4,7 +4,48 @@
 
 {% block body %}
 
-    <div {{ react_component('hw', { 'fullName': fullName }) }}></div>
-    {{ render_chart(chart) }}
+    <header>
+        <img src="{{ asset('assets/images/vnlg.png') }}" alt="">
+    </header>
+    <section class="cta">
+        <h1>Cité éducative - Villeneuve La Garenne</h1>
+        <a href="#">Donnez-nous votre avis</a>
+    </section>
+    <section class="description">
+        <h2>La Cité éducative - Qu'est-ce que c'est</h2>
+        <div>
+            <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+            </ul>
+            <img src="" alt="">
+        </div>
+    </section>
+    <section class="actus">
+        <h2>Découvrez d'autres activités</h2>
+        <div class="actus__grid">
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+            <a href=""></a>
+        </div>
+    </section>
+    <section class="avis">
+        <h2>Découvrez les avis</h2>
+    </section>
+    <section class="re-cta">
+        <h2>Votre avis nous intéresse !</h2>
+        <a href="">Donnez-nous votre avis</a>
+    </section>
+    <footer>
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
+    </footer>
+    
 
 {% endblock %}

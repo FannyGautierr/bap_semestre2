@@ -29,15 +29,23 @@ class AppFixtures extends Fixture
         foreach ($questions as $key => $question) {
             $question = new Question();
             $question->setTitle($questions[$key]);
-            $question->setType(array_rand($types, 1));
+            $question->setType($types[array_rand($types, 1)]);
             $question->setSurvey($survey);
             $manager->persist($question);
             $manager->flush();
 
-            for ($i = 0; $i < 3; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $answer = new Answer();
                 $answer->setQuestion($question);
-                $answer->setContent("Réponse fvdsjkgbskgbdskvhnxiov $i");
+                if($question->getType() == "radio"){
+                    if(rand(0, 1)) {
+                        $answer->setContent('true');
+                    }else{
+                        $answer->setContent('false');
+                    }
+                }else{
+                    $answer->setContent("Réponse fvdsjkgbskgbdskvhnxiov $i");
+                }
                 $manager->persist($answer);
                 $manager->flush();
             }

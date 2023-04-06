@@ -98,11 +98,62 @@ body .actus .actus__grid a:nth-child(6) {
   grid-row: 2;
 }
 body .avis {
-  padding: 55px 4%;
+  padding: 55px 0;
 }
 body .avis h2 {
+  margin-left: 6%;
   font-size: 48px;
   color: #EF6767;
+  padding-bottom: 32px;
+}
+body .avis .reviews__out {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  position: relative;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+body .avis .reviews__out .arrow {
+  height: 36px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  cursor: pointer;
+}
+body .avis .reviews__out .arrow.left {
+  left: 16px;
+  transform: scaleX(-1);
+}
+body .avis .reviews__out .arrow.right {
+  right: 16px;
+}
+body .avis .reviews__out .reviews {
+  display: flex;
+  width: 100%;
+  overflow: scroll;
+  gap: 22px;
+  position: relative;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+body .avis .reviews__out .reviews::-webkit-scrollbar {
+  display: none;
+}
+body .avis .reviews__out .reviews .review {
+  height: 270px;
+  aspect-ratio: 1/1;
+  background: #D9D9D9;
+  padding: 32px 32px 56px;
+  border-radius: 25px;
+}
+body .avis .reviews__out .reviews .review p {
+  font-style: italic;
+  font-size: 36px;
+  color: #706F6F;
+}
+body .avis .reviews__out .reviews .review span {
+  font-size: 24px;
+  font-style: italic;
 }
 body .re-cta {
   padding: 55px 4% 96px;

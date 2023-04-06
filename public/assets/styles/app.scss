@@ -119,11 +119,71 @@ body {
   }
 
   .avis {
-    padding: 55px 4%;
+    padding: 55px 0;
+
 
     h2 {
+      margin-left: 6%;
       font-size: 48px;
       color: #EF6767;
+      padding-bottom: 32px;
+    }
+
+    .reviews__out {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      position: relative;
+      padding-left: 6%;
+      padding-right: 6%;
+
+      .arrow {
+        height: 36px;
+        aspect-ratio: 1/1;
+        position: absolute;
+        cursor: pointer;
+
+        &.left {
+          left: 16px;
+          transform: scaleX(-1);
+        }
+
+        &.right {
+          right: 16px;
+        }
+      }
+      .reviews {
+        display: flex;
+        width: 100%;
+        overflow: scroll;
+        gap: 22px;
+        position: relative;
+
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .review {
+          height: 270px;
+          aspect-ratio: 1/1;
+          background: #D9D9D9;
+          padding: 32px 32px 56px;
+          border-radius: 25px;
+
+          p {
+            font-style: italic;
+            font-size: 36px;
+            color: #706F6F;
+          }
+
+          span {
+            font-size: 24px;
+            font-style: italic;
+          }
+        }
+      }
     }
   }
 

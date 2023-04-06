@@ -38,6 +38,18 @@
     </section>
     <section class="avis">
         <h2>Découvrez les avis</h2>
+        <div class="reviews__out">
+            <img src="{{ asset('assets/images/arrow.png') }}" alt="" class="arrow left">
+            <img src="{{ asset('assets/images/arrow.png') }}" alt="" class="arrow right">
+            <div class="reviews">
+                {% for review in reviews %}
+                    <div class="review">
+                        <p>{{ review.content }}</p>
+                        <span>{{ review.firstName }} - {{ review.age }} ans</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </section>
     <section class="re-cta">
         <h2>Votre avis nous intéresse !</h2>
@@ -46,6 +58,22 @@
     <footer>
         <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
     </footer>
-    
+
+    <script>
+        let arrows = document.querySelectorAll('.arrow')
+        let reviewsEl = document.querySelector('.reviews')
+        arrows.forEach(arrow => {
+            arrow.addEventListener('click', (e) => {
+                let direction = e.target.classList.contains('right') ? 1 : -1
+
+                reviewsEl.scrollBy({
+                    top: 0,
+                    left: reviewsEl.clientWidth * direction,
+                    behavior: 'smooth'
+                })
+            })
+
+        })
+    </script>
 
 {% endblock %}

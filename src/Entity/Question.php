@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: QuestionRepository::class)]
@@ -15,22 +16,21 @@ class Question
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Survey::class, inversedBy: 'questions')]
-    private Collection $survey;
-
-    #[ORM\Column(length: 255)]
-    private ?string $question = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: QuestionsChoice::class, orphanRemoval: true)]
-    private Collection $questionsChoices;
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    private ?Survey $survey = null;
+
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class)]
+    private Collection $answers;
 
     public function __construct()
     {
-        $this->survey = new ArrayCollection();
-        $this->questionsChoices = new ArrayCollection();
+        $this->answers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -38,38 +38,14 @@ class Question
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Survey>
-     */
-    public function getSurvey(): Collection
+    public function getTitle(): ?string
     {
-        return $this->survey;
+        return $this->title;
     }
 
-    public function addSurvey(Survey $survey): self
+    public function setTitle(string $title): self
     {
-        if (!$this->survey->contains($survey)) {
-            $this->survey->add($survey);
-        }
-
-        return $this;
-    }
-
-    public function removeSurvey(Survey $survey): self
-    {
-        $this->survey->removeElement($survey);
-
-        return $this;
-    }
-
-    public function getQuestion(): ?string
-    {
-        return $this->question;
-    }
-
-    public function setQuestion(string $question): self
-    {
-        $this->question = $question;
+        $this->title = $title;
 
         return $this;
     }
@@ -86,30 +62,42 @@ class Question
         return $this;
     }
 
-    /**
-     * @return Collection<int, QuestionsChoice>
-     */
-    public function getQuestionsChoices(): Collection
+    public function getSurvey(): ?Survey
     {
-        return $this->questionsChoices;
+        return $this->survey;
     }
 
-    public function addQuestionsChoice(QuestionsChoice $questionsChoice): self
+    public function setSurvey(?Survey $survey): self
     {
-        if (!$this->questionsChoices->contains($questionsChoice)) {
-            $this->questionsChoices->add($questionsChoice);
-            $questionsChoice->setQuestion($this);
+        $this->survey = $survey;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Answer>
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answer $answer): self
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers->add($answer);
+            $answer->setQuestion($this);
         }
 
         return $this;
     }
 
-    public function removeQuestionsChoice(QuestionsChoice $questionsChoice): self
+    public function removeAnswer(Answer $answer): self
     {
-        if ($this->questionsChoices->removeElement($questionsChoice)) {
+        if ($this->answers->removeElement($answer)) {
             // set the owning side to null (unless already changed)
-            if ($questionsChoice->getQuestion() === $this) {
-                $questionsChoice->setQuestion(null);
+            if ($answer->getQuestion() === $this) {
+                $answer->setQuestion(null);
             }
         }
 

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\AgeGroup;
+use App\Entity\Answer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<AgeGroup>
+ * @extends ServiceEntityRepository<Answer>
  *
- * @method AgeGroup|null find($id, $lockMode = null, $lockVersion = null)
- * @method AgeGroup|null findOneBy(array $criteria, array $orderBy = null)
- * @method AgeGroup[]    findAll()
- * @method AgeGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Answer|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Answer|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Answer[]    findAll()
+ * @method Answer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AgeGroupRepository extends ServiceEntityRepository
+class AnswerRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, AgeGroup::class);
+        parent::__construct($registry, Answer::class);
     }
 
-    public function save(AgeGroup $entity, bool $flush = false): void
+    public function save(Answer $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AgeGroupRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(AgeGroup $entity, bool $flush = false): void
+    public function remove(Answer $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AgeGroupRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return AgeGroup[] Returns an array of AgeGroup objects
+//     * @return Answer[] Returns an array of Answer objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AgeGroupRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?AgeGroup
+//    public function findOneBySomeField($value): ?Answer
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

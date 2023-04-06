@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SurveyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SurveyRepository::class)]
@@ -18,10 +19,10 @@ class Survey
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Question::class, mappedBy: 'survey')]
+    #[ORM\OneToMany(mappedBy: 'survey', targetEntity: Question::class)]
     private Collection $questions;
 
     public function __construct()
@@ -51,7 +52,7 @@ class Survey
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
@@ -70,7 +71,7 @@ class Survey
     {
         if (!$this->questions->contains($question)) {
             $this->questions->add($question);
-            $question->addSurvey($this);
+            $question->setSurvey($this);
         }
 
         return $this;
@@ -79,7 +80,10 @@ class Survey
     public function removeQuestion(Question $question): self
     {
         if ($this->questions->removeElement($question)) {
-            $question->removeSurvey($this);
+            // set the owning side to null (unless already changed)
+            if ($question->getSurvey() === $this) {
+                $question->setSurvey(null);
+            }
         }
 
         return $this;

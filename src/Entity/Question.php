@@ -28,9 +28,13 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class)]
     private Collection $answers;
 
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: QuestionOption::class)]
+    private Collection $questionOptions;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
+        $this->questionOptions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +102,36 @@ class Question
             // set the owning side to null (unless already changed)
             if ($answer->getQuestion() === $this) {
                 $answer->setQuestion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, QuestionOption>
+     */
+    public function getQuestionOptions(): Collection
+    {
+        return $this->questionOptions;
+    }
+
+    public function addQuestionOption(QuestionOption $questionOption): self
+    {
+        if (!$this->questionOptions->contains($questionOption)) {
+            $this->questionOptions->add($questionOption);
+            $questionOption->setQuestion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionOption(QuestionOption $questionOption): self
+    {
+        if ($this->questionOptions->removeElement($questionOption)) {
+            // set the owning side to null (unless already changed)
+            if ($questionOption->getQuestion() === $this) {
+                $questionOption->setQuestion(null);
             }
         }
 

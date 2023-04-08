@@ -4,23 +4,32 @@
 {% endblock %}
 {% block content_title %}{{ survey.name }}{% endblock %}
 {% block main %}
-
-    <p>Graphique :</p>
-
-    {{ render_chart(chart) }}
-
+<style>
+    .charts {
+        width: 20vw;
+        height: auto;
+    }
+</style>
     <div>
         <h3>Questions :</h3>
         <ul>
-            {% for question in survey.questions %}
-                <li style="color: red">{{ question.title }} | {{ question.type }}</li>
-
-                <ul>
-                    {% for answer in question.answers %}
-                        <li>{{ answer.content }}</li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
+                {% for question in survey.questions %}
+                    <li style="color: red">{{ question.title }} | {{ question.type }}</li>
+                    {% if question.type == 'radio' or question.type == 'checkbox' or question.type == 'select' %}
+                        {% for chart in charts %}
+                            {% if chart.question == question.id %}
+                                <div class="charts">
+                                    {{ render_chart(chart.chart) }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <ul>
+                        {% for answer in question.answers %}
+                            <li>{{ answer.content }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
         </ul>
     </div>
 

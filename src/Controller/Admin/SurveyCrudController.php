@@ -32,32 +32,119 @@ class SurveyCrudController extends AbstractCrudController
             throw $this->createNotFoundException('Enquête inconnue');
         }
 
-        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+        $charts = [];
 
-        $chart->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            'datasets' => [
-                [
-                    'label' => 'My First dataset',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
-                ],
-            ],
-        ]);
 
-        $chart->setOptions([
-            'scales' => [
-                'y' => [
-                    'suggestedMin' => 0,
-                    'suggestedMax' => 100,
-                ],
-            ],
-        ]);
+
+        $questions = $survey->getQuestions();
+        foreach ($questions as $question) {
+            switch ($question->getType()){
+                case 'radio':
+                    $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+                    $answers = $question->getAnswers();
+                    $yes = 0;
+                    $no = 0;
+                    foreach ($answers as $answer) {
+                        if($answer->getContent() === 'true') {
+                            $yes++;
+                        } else {
+                            $no++;
+                        }
+                    }
+
+                    $chart->setData([
+                        'type' => 'doughnut',
+                        'labels' => ['Oui', 'Non'],
+                        'datasets' => [
+                            [
+                                'backgroundColor' => ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+                                'borderColor' => ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+                                'data' => [$yes, $no],
+                            ],
+                        ],
+                    ]);
+
+                    $charts[] = ['question' => $question->getId(), 'chart' => $chart];
+                    break;
+
+                case 'checkbox':
+                    $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+                    $answers = $question->getAnswers();
+                    //get questions options for labels
+                    $options = $question->getQuestionOptions();
+                    $labels = [];
+                    $data = [];
+                    foreach ($options as $option) {
+                        $choice = $option->getChoice();
+                        $labels[] = $choice;
+                        //count answers for each option
+                        $count = 0;
+                        foreach ($answers as $answer) {
+
+                            $answerArray = explode(',', $answer->getContent());
+                            if(in_array($choice, $answerArray)) {
+                                $count++;
+                            }
+                        }
+                        $data[] = $count;
+                    }
+
+                    $chart->setData([
+                        'type' => 'doughnut',
+                        'labels' => $labels,
+                        'datasets' => [
+                            [
+                                'backgroundColor' => ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'],
+                                'borderColor' => ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'],
+                                'data' => $data,
+                            ],
+                        ],
+                    ]);
+
+                    $charts[] = ['question' => $question->getId(), 'chart' => $chart];
+                    break;
+
+                case 'select':
+                    $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
+                    $answers = $question->getAnswers();
+                    $options = $question->getQuestionOptions();
+                    $labels = [];
+                    $data = [];
+                    foreach ($options as $option) {
+                        $choice = $option->getChoice();
+                        $labels[] = $choice;
+                        $count = 0;
+                        foreach ($answers as $answer) {
+                            if($answer->getContent() === $choice) {
+                                $count++;
+                            }
+                        }
+                        $data[] = $count;
+                    }
+
+                    $chart->setData([
+                        'type' => 'doughnut',
+                        'labels' => $labels,
+                        'datasets' => [
+                            [
+                                'backgroundColor' => ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'],
+                                'borderColor' => ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(153, 102, 255)', 'rgb(255, 159, 64)'],
+                                'data' => $data,
+                            ],
+                        ],
+                    ]);
+
+                    $charts[] = ['question' => $question->getId(), 'chart' => $chart];
+                    break;
+            }
+        }
+
+
+
 
         return $this->render('admin/stats.html.twig', [
             'survey' => $survey,
-            'chart' => $chart,
+            'charts' => $charts,
         ]);
     }
 

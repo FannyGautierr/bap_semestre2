@@ -466,7 +466,6 @@ body {
   }
 }
 
-
 body {
   .event__header {
     height: 143px;
@@ -553,6 +552,7 @@ body {
       display: flex;
       width: 100%;
       gap: 10%;
+      margin-bottom: 100px;
 
       & > div {
         width: 45%;
@@ -565,18 +565,21 @@ body {
         }
 
         &:nth-child(1) {
+          padding-left: 5%;
+          padding-top: 64px;
           ul {
+            margin-bottom: 32px;
             li {
               font-size: 32px;
             }
           }
 
           & > div {
-            padding-left: 5%;
             span {
               display: flex;
               align-items: center;
               font-size: 32px;
+              margin-bottom: 24px;
               img {
                 margin-right: 16px;
                 aspect-ratio: 1/1;
@@ -592,6 +595,7 @@ body {
             margin-bottom: 30px;
             text-align: right;
             color: #EF6767;
+            text-decoration: underline;
           }
         }
       }
@@ -606,3 +610,105 @@ body {
     }
   }
 }
+
+.other-activities{
+  background-color: rgba(0, 138, 158, 0.7);
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+  align-items: center;
+
+
+  padding:65px 60px 65px 60px ;
+
+  .primary-activity{
+    //width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 55px;
+    margin-top: -40px;
+
+
+  }
+  .card-conte{
+    background-image: url('../images/event-conte.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 90%;
+
+    height: 24rem;
+    display: flex;
+    align-items: flex-end;
+
+
+    .card-title{
+
+      background: rgba(255, 255, 255, 0.7);
+      width: 90%;
+      padding: 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      h3{
+        font-weight: 400;
+        font-size: 42px;
+      }
+
+    }
+  }
+  .little-title-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    p{
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 32px;
+      padding: 6px 22px 6px 38px;
+    }
+
+  }
+  .little-activities{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 44px;
+    width: 20%;
+
+
+    .theatre{
+      background-image: url('../images/event-theatre.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 15rem;
+      width: 35rem;
+      display: flex;
+      align-items: flex-end;
+
+
+    }
+    .musique{
+      background-image: url('../images/event-musique.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 15rem;
+      width: 35rem;
+      display: flex;
+      align-items: flex-end;
+
+
+    }
+  }
+
+  .title{
+    font-size: 40px;
+    font-weight: 400;
+    color: white;
+  }
+
+}
+

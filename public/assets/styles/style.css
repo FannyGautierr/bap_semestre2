@@ -455,4 +455,208 @@ body footer img {
   }
 }
 
+body .event__header {
+  height: 143px;
+  border-bottom: solid 1px;
+}
+body .event__header img {
+  height: 75%;
+}
+body .event__nav {
+  margin-top: 16px;
+  margin-bottom: 96px;
+  height: 88px;
+  background: linear-gradient(90deg, rgba(96, 42, 121, 0.7) 0.07%, rgba(239, 103, 103, 0.85) 99.67%);
+  display: grid;
+  place-items: center;
+}
+body .event__nav ul {
+  display: flex;
+  gap: 32px;
+}
+body .event__nav ul li {
+  list-style: none;
+  font-size: 29px;
+  text-transform: uppercase;
+}
+body .event__nav ul li a {
+  color: #FFFFFF;
+}
+body .event__intro {
+  position: relative;
+  height: 812px;
+  width: 100%;
+  background: url("/assets/images/happy-childs.png");
+  background-size: cover;
+  background-position: center;
+}
+body .event__intro .left {
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  left: 0;
+  top: 162px;
+  width: 48%;
+  padding: 36px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: center;
+}
+body .event__intro .left h2 {
+  font-size: 32px;
+  width: 65%;
+}
+body .event__intro .left p {
+  font-size: 20px;
+  width: 65%;
+}
+body .event__info {
+  padding: 64px 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .event__info hr {
+  width: 43.5%;
+}
+body .event__info h2 {
+  font-size: 64px;
+  color: #EF6767;
+  text-align: left;
+  width: 100%;
+  margin-top: 42px;
+}
+body .event__info > div {
+  display: flex;
+  width: 100%;
+  gap: 10%;
+  margin-bottom: 100px;
+}
+body .event__info > div > div {
+  width: 45%;
+}
+body .event__info > div > div > iframe {
+  height: 520px;
+  width: 100%;
+  border-radius: 37px;
+  overflow: hidden;
+}
+body .event__info > div > div:nth-child(1) {
+  padding-left: 5%;
+  padding-top: 64px;
+}
+body .event__info > div > div:nth-child(1) ul {
+  margin-bottom: 32px;
+}
+body .event__info > div > div:nth-child(1) ul li {
+  font-size: 32px;
+}
+body .event__info > div > div:nth-child(1) > div span {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+body .event__info > div > div:nth-child(1) > div span img {
+  margin-right: 16px;
+  aspect-ratio: 1/1;
+  height: 38px;
+}
+body .event__info > div > div:nth-child(2) h3 {
+  font-size: 48px;
+  margin-bottom: 30px;
+  text-align: right;
+  color: #EF6767;
+  text-decoration: underline;
+}
+body .event__info > a {
+  font-size: 32px;
+  color: #FFFFFF;
+  padding: 35px 112px;
+  background: #EF6767;
+  border-radius: 11px;
+}
+
+.other-activities {
+  background-color: rgba(0, 138, 158, 0.7);
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+  align-items: center;
+  padding: 65px 60px 65px 60px;
+}
+.other-activities .primary-activity {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 55px;
+  margin-top: -40px;
+}
+.other-activities .card-conte {
+  background-image: url("../images/event-conte.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 24rem;
+  display: flex;
+  align-items: flex-end;
+}
+.other-activities .card-conte .card-title {
+  background: rgba(255, 255, 255, 0.7);
+  width: 90%;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.other-activities .card-conte .card-title h3 {
+  font-weight: 400;
+  font-size: 42px;
+}
+.other-activities .little-title-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.other-activities .little-title-card p {
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 32px;
+  padding: 6px 22px 6px 38px;
+}
+.other-activities .little-activities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 44px;
+  width: 20%;
+}
+.other-activities .little-activities .theatre {
+  background-image: url("../images/event-theatre.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 15rem;
+  width: 35rem;
+  display: flex;
+  align-items: flex-end;
+}
+.other-activities .little-activities .musique {
+  background-image: url("../images/event-musique.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 15rem;
+  width: 35rem;
+  display: flex;
+  align-items: flex-end;
+}
+.other-activities .title {
+  font-size: 40px;
+  font-weight: 400;
+  color: white;
+}
+
 /*# sourceMappingURL=style.css.map */

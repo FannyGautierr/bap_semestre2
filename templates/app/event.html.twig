@@ -5,34 +5,89 @@
 {% block body %}
 
 
-
-<div class="other-activities">
-    <div class="primary-activity">
-        <h3 class="title">D’autres activités qui pourrait vous plaire :</h3>
-        <div class="card-conte">
-            <div></div>
-            <div class="card-title">
-            <h3>Conte et fantaisie</h3>
-            <p>Lorem ipsum dolor sit amet consectetur. Volutpat faucibus egestas mattis eu a rhoncus diam ligula tortor.</p>
+<header class="event__header">
+    <img src="{{ asset('assets/images/vnlg.png') }}" alt="">
+</header>
+<nav class="event__nav">
+    <ul>
+        <li><a href="#">Découvrir</a></li>
+        <li><a href="#">A toute Age</a></li>
+        <li><a href="#">S’impliquer</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="event__intro">
+        <div class="left">
+            <h2>Tous a vous livres </h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue.</p>
+        </div>
+    </section>
+    <section class="event__info">
+        <hr>
+        <h2>Quelques informations :</h2>
+        <div class="container">
+            <div>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+                    <li>Ut et massa mi. Aliquam in hendrerit urna. </li>
+                    <li>Pellentesque sit amet sapien fringilla, mattis.. </li>
+                </ul>
+                <div>
+                    <span>
+                        <img src="{{ asset('assets/images/User.svg') }}" alt="">
+                        28 inscrits
+                    </span>
+                    <span>
+                        <img src="{{ asset('assets/images/Clock.svg') }}" alt="">
+                        13:00 h
+                    </span>
+                    <span>
+                        <img src="{{ asset('assets/images/Calendar.svg') }}" alt="">
+                        7 juin 2023
+                    </span>
+                    <span>
+                        <img src="{{ asset('assets/images/Mail.svg') }}" alt="">
+                        mail@mail.com
+                    </span>
+                </div>
             </div>
+            <div>
+                <h3>Où nous retrouver ?</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20967.605666543255!2d2.302481931644055!3d48.935380657688135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6692ce0d2148b%3A0x1ba303435cbcb67c!2s92390%20Villeneuve-la-Garenne!5e0!3m2!1sfr!2sfr!4v1682424475280!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <a href="">S'inscrire</a>
+    </section>
+    <div class="other-activities">
+        <div class="primary-activity">
+            <h3 class="title">D’autres activités qui pourrait vous plaire :</h3>
+            <div class="card-conte">
+                <div></div>
+                <div class="card-title">
+                    <h3>Conte et fantasie</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur. Volutpat faucibus egestas mattis eu a rhoncus diam ligula tortor.</p>
+                </div>
+            </div>
+        </div>
+        <div class="little-activities">
+
+            <div class="card-secondaire musique">
+                <div class="little-title-card">
+                    <p>Musica</p>
+                    <p>Voir plus &#x25B6</p>
+                </div>
+            </div>
+
+            <div class="card-secondaire theatre">
+                <div class="little-title-card">
+                    <p>Théatre</p>
+                    <p>Voir plus &#x25B6</p>
+                </div>
+            </div>
+
         </div>
     </div>
-    <div class="little-activities">
 
-        <div class="musique">
-            <div class="little-title-card">
-            <p>Musica</p>
-            <p>Voir plus &#x25B6</p>
-            </div>
-        </div>
+</main>
 
-        <div class="theatre">
-            <div class="little-title-card">
-            <p>Théatre</p>
-            <p>Voir plus &#x25B6</p>
-            </div>
-        </div>
-
-    </div>
-</div>
 {% endblock %}

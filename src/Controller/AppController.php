@@ -56,4 +56,10 @@ class AppController extends AbstractController
             ]
         ]);
     }
+
+    #[Route('/event', name: 'app_event')]
+    public function event(): Response
+    {
+        return $this->render('app/event.html.twig');
+    }
 }

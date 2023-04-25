@@ -455,4 +455,120 @@ body footer img {
   }
 }
 
+body .event__header {
+  height: 143px;
+  border-bottom: solid 1px;
+}
+body .event__header img {
+  height: 75%;
+}
+body .event__nav {
+  margin-top: 16px;
+  margin-bottom: 96px;
+  height: 88px;
+  background: linear-gradient(90deg, rgba(96, 42, 121, 0.7) 0.07%, rgba(239, 103, 103, 0.85) 99.67%);
+  display: grid;
+  place-items: center;
+}
+body .event__nav ul {
+  display: flex;
+  gap: 32px;
+}
+body .event__nav ul li {
+  list-style: none;
+  font-size: 29px;
+  text-transform: uppercase;
+}
+body .event__nav ul li a {
+  color: #FFFFFF;
+}
+body .event__intro {
+  position: relative;
+  height: 812px;
+  width: 100%;
+  background: url("/assets/images/happy-childs.png");
+  background-size: cover;
+  background-position: center;
+}
+body .event__intro .left {
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  left: 0;
+  top: 162px;
+  width: 48%;
+  padding: 36px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: center;
+}
+body .event__intro .left h2 {
+  font-size: 32px;
+  width: 65%;
+}
+body .event__intro .left p {
+  font-size: 20px;
+  width: 65%;
+}
+body .event__info {
+  padding: 64px 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .event__info hr {
+  width: 43.5%;
+}
+body .event__info h2 {
+  font-size: 64px;
+  color: #EF6767;
+  text-align: left;
+  width: 100%;
+  margin-top: 42px;
+}
+body .event__info > div {
+  display: flex;
+  width: 100%;
+  gap: 10%;
+}
+body .event__info > div > div {
+  width: 45%;
+}
+body .event__info > div > div > iframe {
+  height: 520px;
+  width: 100%;
+  border-radius: 37px;
+  overflow: hidden;
+}
+body .event__info > div > div:nth-child(1) ul li {
+  font-size: 32px;
+}
+body .event__info > div > div:nth-child(1) > div {
+  padding-left: 5%;
+}
+body .event__info > div > div:nth-child(1) > div span {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+}
+body .event__info > div > div:nth-child(1) > div span img {
+  margin-right: 16px;
+  aspect-ratio: 1/1;
+  height: 38px;
+}
+body .event__info > div > div:nth-child(2) h3 {
+  font-size: 48px;
+  margin-bottom: 30px;
+  text-align: right;
+  color: #EF6767;
+}
+body .event__info > a {
+  font-size: 32px;
+  color: #FFFFFF;
+  padding: 35px 112px;
+  background: #EF6767;
+  border-radius: 11px;
+}
+
 /*# sourceMappingURL=style.css.map */

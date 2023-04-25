@@ -31,6 +31,9 @@ class Question
     #[ORM\OneToMany(mappedBy: 'question', targetEntity: QuestionOption::class)]
     private Collection $questionOptions;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $filter = null;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -134,6 +137,18 @@ class Question
                 $questionOption->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFilter(): ?string
+    {
+        return $this->filter;
+    }
+
+    public function setFilter(?string $filter): self
+    {
+        $this->filter = $filter;
 
         return $this;
     }

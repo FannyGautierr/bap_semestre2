@@ -25,9 +25,14 @@ class Survey
     #[ORM\OneToMany(mappedBy: 'survey', targetEntity: Question::class)]
     private Collection $questions;
 
+    #[ORM\OneToMany(mappedBy: 'survey', targetEntity: Submitter::class)]
+    private Collection $submitters;
+
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
+        $this->submitters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,4 +93,57 @@ class Survey
 
         return $this;
     }
+
+    public function getQuestionByType(string $type): Collection
+    {
+        $questions = new ArrayCollection();
+        foreach ($this->questions as $question) {
+            if($question->getType() === $type) {
+                $questions->add($question);
+            }
+        }
+        return $questions;
+    }
+
+    public function getQuestionByTypeAndAge(string $type, int $age): Collection
+    {
+        $questions = new ArrayCollection();
+        foreach ($this->questions as $question) {
+            if($question->getType() === $type && $question->getAge() === $age) {
+                $questions->add($question);
+            }
+        }
+        return $questions;
+    }
+
+    /**
+     * @return Collection<int, Submitter>
+     */
+    public function getSubmitters(): Collection
+    {
+        return $this->submitters;
+    }
+
+    public function addSubmitter(Submitter $submitter): self
+    {
+        if (!$this->submitters->contains($submitter)) {
+            $this->submitters->add($submitter);
+            $submitter->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubmitter(Submitter $submitter): self
+    {
+        if ($this->submitters->removeElement($submitter)) {
+            // set the owning side to null (unless already changed)
+            if ($submitter->getSurvey() === $this) {
+                $submitter->setSurvey(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

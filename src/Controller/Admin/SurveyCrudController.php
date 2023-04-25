@@ -24,8 +24,8 @@ class SurveyCrudController extends AbstractCrudController
     }
 
 
-    #[Route('/admin/survey/{id}/stats', name: 'survey_stats')]
-    public function statistics($id, SurveyRepository $surveyRepository, ChartBuilderInterface $chartBuilder): Response
+    #[Route('/admin/survey/{id}/stats/{age}', name: 'survey_stats')]
+    public function statistics($id, $age, SurveyRepository $surveyRepository, ChartBuilderInterface $chartBuilder): Response
     {
         $survey = $surveyRepository->find($id);
         if($survey === null) {
@@ -34,6 +34,7 @@ class SurveyCrudController extends AbstractCrudController
 
         $charts = [];
 
+    // filter by age if needed
 
 
         $questions = $survey->getQuestions();
@@ -145,6 +146,7 @@ class SurveyCrudController extends AbstractCrudController
         return $this->render('admin/stats.html.twig', [
             'survey' => $survey,
             'charts' => $charts,
+            'age' => $age
         ]);
     }
 
@@ -153,7 +155,7 @@ class SurveyCrudController extends AbstractCrudController
         $stats = Action::new('stats', 'Statistiques', 'fa fa-chart-bar')
             ->addCssClass('btn btn-primary')
             ->linkToRoute('survey_stats', function (Survey $survey) {
-                return ['id' => $survey->getId()];
+                return ['id' => $survey->getId(), 'age' => "all"];
             });
         return $actions
             ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')

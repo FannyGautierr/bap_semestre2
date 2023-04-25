@@ -27,7 +27,7 @@
         "sass": "sass --watch public/assets/styles/app.scss:public/assets/styles/style.css"
     },
     "dependencies": {
-        "sass": "^1.60.0",
+        "sass": "^1.62.0",
         "sass-loader": "^13.2.2"
     }
 }

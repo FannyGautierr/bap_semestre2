@@ -20,6 +20,10 @@ class Answer
     #[ORM\ManyToOne(inversedBy: 'answers')]
     private ?Question $question = null;
 
+    #[ORM\ManyToOne(inversedBy: 'answers')]
+    private ?Submitter $submitter = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -48,4 +52,17 @@ class Answer
 
         return $this;
     }
+
+    public function getSubmitter(): ?Submitter
+    {
+        return $this->submitter;
+    }
+
+    public function setSubmitter(?Submitter $submitter): self
+    {
+        $this->submitter = $submitter;
+
+        return $this;
+    }
+
 }

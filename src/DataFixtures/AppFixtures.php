@@ -2,13 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Activity;
-use App\Entity\AgeGroup;
 use App\Entity\Answer;
-use App\Entity\Neighborhood;
 use App\Entity\Question;
 use App\Entity\QuestionOption;
-use App\Entity\QuestionsChoice;
+use App\Entity\Submitter;
 use App\Entity\Survey;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -24,13 +21,19 @@ class AppFixtures extends Fixture
         $manager->flush();
 
 
-        $questions = ["Dans quelle tranche d'âge vous situez-vous ?","Dans quel quartier habitez-vous ? ","Connaissez vous le dispositif Cité Éducative ?","Comment connaissez vous le dispositif  Cité Éducative ?","Avez-vous, vous ou votre enfant, participé à l'un de ces dispositifs ?","Pourriez vous nous décrire l'activité qui vous a le plus marqué ?","Trouvez-vous l'initiative des dispositifs de Cité Éducative intéressante  ?","Quel(s) domaine(s) aimeriez vous voir être développé lors des prochaines années ?","Avez-vous une idée précise d'activité pour ce domaine ?"];
+        $questions = ["Quel âge avez-vous ?","Dans quel quartier habitez-vous ? ","Connaissez vous le dispositif Cité Éducative ?","Comment connaissez vous le dispositif  Cité Éducative ?","Avez-vous, vous ou votre enfant, participé à l'un de ces dispositifs ?","Pourriez vous nous décrire l'activité qui vous a le plus marqué ?","Trouvez-vous l'initiative des dispositifs de Cité Éducative intéressante  ?","Quel(s) domaine(s) aimeriez vous voir être développé lors des prochaines années ?","Avez-vous une idée précise d'activité pour ce domaine ?"];
         $types =["select","radio","checkbox","textarea"];
 
-        foreach ($questions as $key => $question) {
+        foreach ($questions as $value) {
             $question = new Question();
-            $question->setTitle($questions[$key]);
-            $question->setType($types[array_rand($types, 1)]);
+            $question->setTitle($value);
+
+            if($value == "Quel âge avez-vous ?"){
+                $question->setType("textarea");
+                $question->setFilter("age");
+            }else{
+                $question->setType($types[array_rand($types, 1)]);
+            }
             $question->setSurvey($survey);
             $manager->persist($question);
 
@@ -52,16 +55,20 @@ class AppFixtures extends Fixture
 
         $questionsOptionsRepo = $manager->getRepository(QuestionOption::class);
 
-        foreach ($questions as $question) {
+        for ($i = 0; $i < 20; $i++) {
+            $submitter = new Submitter();
+            $submitter->setSurvey($survey);
 
-            $questionId = $question->getId();
-            $questionOptions = $questionsOptionsRepo->findBy(['question' => $questionId]);
-            $choices = [];
-            foreach ($questionOptions as $questionOption) {
-                $choices[] = $questionOption->getChoice();
-            }
+            foreach ($questions as $question) {
 
-            for ($i = 0; $i < 5; $i++) {
+                $questionId = $question->getId();
+                $questionOptions = $questionsOptionsRepo->findBy(['question' => $questionId]);
+                $choices = [];
+                foreach ($questionOptions as $questionOption) {
+                    $choices[] = $questionOption->getChoice();
+                }
+
+
                 $answer = new Answer();
                 $answer->setQuestion($question);
 
@@ -88,12 +95,18 @@ class AppFixtures extends Fixture
                         $answer->setContent(implode(',', $options));
                         break;
                     case "textarea":
-                        $answer->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl eget nisl. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl eget nisl. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl eget nisl. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget ');
+                        if ($question->getFilter() === "age") {
+                            $answer->setContent(rand(0, 100));
+                        }else{
+                            $answer->setContent('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl eget nisl. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl eget nisl. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget aliquam nisl nisl eget nisl. Donec auctor, nisl eget aliquam tincidunt, nisl nisl aliquam nisl, eget ');
+                        }
                         break;
                 }
+                $answer->setSubmitter($submitter);
                 $manager->persist($answer);
-                $manager->flush();
             }
+            $manager->persist($submitter);
         }
+        $manager->flush();
     }
 }

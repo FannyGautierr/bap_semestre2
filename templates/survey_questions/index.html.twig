@@ -12,6 +12,7 @@
     <div class="survey-questions">
 
         <form action="{{ path('app_survey_answer_save') }}" method="POST">
+            <input type="hidden" name="survey_ID" value="{{ survey.id }}">
 
             {% for index, question in questions %}
                 <div class="question {% if index != 0 %}hidden{% endif %}" id="question-{{ index }}">
@@ -27,9 +28,13 @@
                                 <option value="{{ option.choice }}">{{ option.choice }}</option>
                             {% endfor %}
                         </select>
-                        <h2>
-                            2
-                        </h2>
+
+                    {% elseif question.type == 'radio' %}
+                        <h2>aaaaa</h2>
+                        {% for option in question.questionOptions %}
+                            <input type="radio" name="{{ question.id }}" value="{{ option.choice }}">
+                            <label for="{{ option.id }}">{{ option.choice }}</label>
+                        {% endfor %}
 
                     {% else %}
                         {% for option in question.questionOptions %}

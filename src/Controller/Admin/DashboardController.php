@@ -79,5 +79,6 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('enquêtes', 'fas fa-list', Survey::class);
+        yield MenuItem::linkToLogout('Logout', 'fa-solid fa-arrow-right-from-bracket');
     }
 }

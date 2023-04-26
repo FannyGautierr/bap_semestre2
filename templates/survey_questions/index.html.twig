@@ -131,7 +131,7 @@
             width: 100%;
             margin-top: 9em;
             display: flex;
-
+            align-items: center;
             justify-content: space-around;
         }
 
@@ -150,7 +150,19 @@
             cursor: pointer;
         }
 
+        .submit{
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
 
+        .select{
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid black;
+            width: 40%;
+        }
     </style>
 
     <div class="vnlg">
@@ -158,7 +170,7 @@
     </div>
 
     <div class="cite-banner">
-        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="logo-cite-edu">
+        <img src="{{ asset('assets/images/image.png') }}" alt="logo-cite-edu">
     </div>
 
     <div class="survey-questions">
@@ -181,18 +193,28 @@
                         </div>
 
                     {% elseif question.type == 'select' %}
-                        <select name="{{ question.id }}" id="{{ question.title }}">
+                        <select name="{{ question.id }}" id="{{ question.title }}" class="select">
                             <option value="">--Please choose an option--</option>
                             {% for option in question.questionOptions %}
                                 <option value="{{ option.choice }}">{{ option.choice }}</option>
                             {% endfor %}
                         </select>
 
-                    {% elseif question.type == 'radio' %}
-                        {% for option in question.questionOptions %}
-                            <input type="radio" name="{{ question.id }}" value="{{ option.choice }}">
-                            <label for="{{ option.id }}">{{ option.choice }}</label>
-                        {% endfor %}
+                    {% elseif question.type == 'radio'%}
+                        <div class="radio-options">
+                            {% for option in question.questionOptions %}
+                                <input type="{{ question.type }}" name="{{ question.id }}" value="{{ option.choice }}">
+                                <label for="{{ option.id }}">{{ option.choice }}</label>
+                            {% endfor %}
+                        </div>
+
+                    {% elseif question.type == 'checkbox'%}
+                        <div class="radio-options">
+                            {% for option in question.questionOptions %}
+                                <input type="{{ question.type }}" name="{{ question.id }}[]" value="{{ option.choice }}">
+                                <label for="{{ option.id }}">{{ option.choice }}</label>
+                            {% endfor %}
+                        </div>
 
                     {% else %}
                         {% for option in question.questionOptions %}
@@ -217,13 +239,13 @@
 
             <span class="small-line"></span>
         </form>
-
     </div>
 
     <footer>
-        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="logo-cite-edu">
+        <div style="width: 100%">
+            <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
+        </div>
     </footer>
-
     <script>
         let currentQuestion = 0;
         let questions = document.querySelectorAll('.question');

@@ -4,22 +4,181 @@
 
 {% block body %}
     <style>
+        body {
+            /* background: linear-gradient(45deg, #FC466B, #3F5EFB); */
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .survey-questions{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            gap: 2em;
+        }
+
+        .question{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5em;
+
+            font-size: large;
+
+            gap: 2em;
+        }
+
+        .textarea-div{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .question textarea {
+            width: 50%;
+            max-height: 50%;
+            /* height: 15em; */
+            border-radius: 5px;
+
+            border: none;
+            border-color: transparent;
+            /* border-bottom: 1px solid black; */
+
+            text-align: center;
+            font-size: 16px;
+        }
+
+        select {
+            background-color: grey;
+            height: 2.5em;
+            border: none;
+            border-radius: 5px;
+        }
+
         .hidden{
             display: none;
         }
+
+        .vnlg{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 2em;
+        }
+
+        .cite-banner{
+            width: 100%;
+            height: 20.5em;
+            background: linear-gradient(90deg, rgba(96, 42, 121, 0.7) 0%, #EF6767 100%);
+
+            margin-top: 1.375em;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cite-banner img {
+            width: 25%;
+        }
+
+        .survey-questions {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feedback {
+            margin-top: 2em;
+            margin-bottom: 2em;
+
+            color: #EF6767;
+            font-size: 64px;
+        }
+
+        .small-line{
+            width: 40%;
+            border: 1px solid black;
+        }
+
+        .question-title {
+            width: 80%;
+        }
+
+        .line {
+            width: 80%;
+            height: 1em;
+
+            background: linear-gradient(90deg, rgba(96, 42, 121, 0.7) 0%, #EF6767 100%);
+            border-radius: 28px;
+        }
+
+        .navigation{
+            width: 100%;
+            margin-top: 9em;
+            display: flex;
+
+            justify-content: space-around;
+        }
+
+        button{
+            border: none;
+            background-color: #EF6767;
+            color: white;
+
+            width: 20em;
+            height: 6.25em;
+
+            border-radius: 11px;
+        }
+
+        button:hover{
+            cursor: pointer;
+        }
+
+
     </style>
 
+    <div class="vnlg">
+        <img src="{{ asset('assets/images/vnlg.png') }}" alt="logo-vileneuve">
+    </div>
+
+    <div class="cite-banner">
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="logo-cite-edu">
+    </div>
+
     <div class="survey-questions">
+
+        <h2 class="feedback">Votre avis compte pour nous!</h2>
+        <span class="small-line"></span>
 
         <form action="{{ path('app_survey_answer_save') }}" method="POST">
             <input type="hidden" name="survey_ID" value="{{ survey.id }}">
 
             {% for index, question in questions %}
                 <div class="question {% if index != 0 %}hidden{% endif %}" id="question-{{ index }}">
-                    <h2>{{ question.title }}</h2>
+                    <h2 class="question-title">{{ question.title }}</h2>
+                    <span class="line"></span>
 
                     {% if question.type == 'textarea' %}
-                        <textarea name="{{ question.id }}" value=""></textarea>
+                        <div class="textarea-div">
+                            <textarea name="{{ question.id }}" value="" placeholder="Votre reponse ..."></textarea>
+                            <span class="small-line"></span>
+                        </div>
 
                     {% elseif question.type == 'select' %}
                         <select name="{{ question.id }}" id="{{ question.title }}">
@@ -30,7 +189,6 @@
                         </select>
 
                     {% elseif question.type == 'radio' %}
-                        <h2>aaaaa</h2>
                         {% for option in question.questionOptions %}
                             <input type="radio" name="{{ question.id }}" value="{{ option.choice }}">
                             <label for="{{ option.id }}">{{ option.choice }}</label>
@@ -50,25 +208,40 @@
 
             <div class="navigation">
                 <button type="button" class="prev" id="prev-btn" onclick="prevQuestion()">Précédent</button>
+                <h2 class="pageNb" id="pageNb"> page sur {{ questions | length }}</h2>
                 <button type="button" class="next" id="next-btn" onclick="nextQuestion()">Suivant</button>
+                <button id="submit" class="hidden">
+                    <input type="submit" class="submit" name="submit" />
+                </button>
             </div>
-            <input type="submit" class="submit hidden" name="submit" id="submit"/>
+
+            <span class="small-line"></span>
         </form>
 
     </div>
 
+    <footer>
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="logo-cite-edu">
+    </footer>
+
     <script>
-        var currentQuestion = 0;
-        var questions = document.querySelectorAll('.question');
-        var prevBtn = document.getElementById('prev-btn');
-        var nextBtn = document.getElementById('next-btn');
-        var submit = document.getElementById('submit')
-        console.log(submit)
+        let currentQuestion = 0;
+        let questions = document.querySelectorAll('.question');
+        let prevBtn = document.getElementById('prev-btn');
+        let nextBtn = document.getElementById('next-btn');
+        let submit = document.getElementById('submit')
+        let page = document.getElementById('pageNb')
+        //console.log(page)
+        let temp = page.textContent
+        page.textContent = (currentQuestion + 1) + temp
 
         function prevQuestion() {
             questions[currentQuestion].classList.add('hidden');
             currentQuestion--;
             questions[currentQuestion].classList.remove('hidden');
+
+            page.textContent = (currentQuestion + 1) + temp
+
             updateButtons();
         }
 
@@ -76,12 +249,16 @@
             questions[currentQuestion].classList.add('hidden');
             currentQuestion++;
             questions[currentQuestion].classList.remove('hidden');
+
+            page.textContent = (currentQuestion + 1) + temp
+
             updateButtons();
         }
 
         function updateButtons() {
             if (currentQuestion === 0) {
                 prevBtn.setAttribute('disabled', true);
+                //prevBtn.classList.add('hidden')
             } else if (currentQuestion === questions.length - 1) {
                 submit.classList.remove('hidden')
                 nextBtn.classList.add('hidden')
@@ -90,6 +267,7 @@
                 nextBtn.textContent = 'Suivant';
                 nextBtn.classList.remove('hidden')
                 submit.classList.add('hidden')
+                //prevBtn.classList.remove('hidden')
             }
         }
 

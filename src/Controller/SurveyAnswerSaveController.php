@@ -33,18 +33,25 @@ class SurveyAnswerSaveController extends AbstractController
         $manager->persist($submitter);
         $manager->flush();
 
-        $index = 1;
+        $index = 0;
         //dd($keysArray[0]);
         //dd($question);
 
         foreach($requestData as $data) {
             if($data != "Envoyer") {
-                //dd(($data));
-                $question = $questionRepository->find($index);
+                //dd(gettype($data));
+                $question = $questionRepository->findAll();
                 //dd(gettype($question));
                 $answer = new Answer();
-                $answer->setQuestion($question);
-                $answer->setContent($data);
+                //dd($question[0]);
+                $answer->setQuestion($question[$index]);
+                if(gettype($data) == "array"){
+                    $myArray = $data;
+                    $myString = implode(' , ', $myArray);
+                    $answer->setContent($myString);
+                }else {
+                    $answer->setContent($data);
+                }
                 $answer->setSubmitter($submitter);
 
                 $manager->persist($answer);

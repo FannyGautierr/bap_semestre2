@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AppController!{% endblock %}
+
+{% block body %}
+
+
+    <header class="event__header">
+        <img src="{{ asset('assets/images/vnlg.png') }}" alt="">
+    </header>
+    <nav class="nav_event">
+        <ul>
+            <li><a href="#">Acceuil</a></li>
+            <li><a href="#">Découvrir</a></li>
+            <li><a href="#">A tout Age</a></li>
+            <li><a href="#">S’impliquer</a></li>
+            <li><a href="#">Entreprendre</a></li>
+
+        </ul>
+    </nav>
+    <main class="acceuil_villeneuve">
+        <H2>l'actualité</H2>
+        <div class="banner-acceuil">
+            <p>Le sport en ville</p>
+        </div>
+        <div class="banner">
+            <div>
+                <p class="title-banner">Match de Basket - Gymnase</p>
+                <div class="info">
+                     <div class="little-info">
+                        <img src="{{ asset('assets/images/User-white.svg') }}" alt="">
+                        <p>28 inscrits</p>
+                    </div>
+                    <div class="little-info">
+                        <img src="{{ asset('assets/images/Clock-white.svg') }}" alt="">
+                       <p> 13:00 h</p>
+                    </div>
+                    <div class="little-info">
+                        <img src="{{ asset('assets/images/Calendar-white.svg') }}" alt="">
+                        <p>7 juin 2023</p>
+                    </div>
+                </div>
+            </div>
+            <div class="button-inscrit">
+                <p>Découvrir l'événement</p>
+            </div>
+        </div>
+<div class="evenement-a-venir">
+        <H3>Evenements a venir</H3>
+        <div class="all-other-event">
+            <p class="arrow">&#x25C0</p>
+            <div class="event-card foot">
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Clock.svg') }}" alt="">
+                    <p>13:00 h</p>
+                </div>
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Calendar.svg') }}" alt="">
+                    <p>7 juin 2023</p>
+                </div>
+            </div>
+            <div class="event-card piscine">
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Clock.svg') }}" alt="">
+                    <p>13:00 h</p>
+                </div>
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Calendar.svg') }}" alt="">
+                    <p>7 juin 2023</p>
+                </div>
+            </div>
+            <div class="event-card theatre-card">
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Clock.svg') }}" alt="">
+                    <p>13:00 h</p>
+                </div>
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Calendar.svg') }}" alt="">
+                    <p>7 juin 2023</p>
+                </div>
+            </div>
+            <div class="event-card music-card">
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Clock.svg') }}" alt="">
+                    <p>13:00 h</p>
+                </div>
+                <div class="icons">
+                    <img src="{{ asset('assets/images/Calendar.svg') }}" alt="">
+                    <p>7 juin 2023</p>
+                </div>
+            </div>
+            <p class="arrow">&#x25B6</p>
+        </div>
+</div>
+        <div class="seperate"></div>
+
+        <H3>En image</H3>
+        <div class="gallery-image">
+
+            <div class="first-part">
+                <div class="card-enImage centreadmin">
+                    <p>Voir plus &#x25B6</p>
+                </div>
+                <div class="card-enImage ecole">
+                    <p>Voir plus &#x25B6</p>
+                </div>
+            </div>
+            <div class="second-part vieux-monsieur">
+                <p>Voir plus &#x25B6</p>
+            </div>
+        </div>
+        <div class="et_aussi_section">
+            <H4>Et aussi ...</H4>
+            <div class="gallery-image">
+                <div class="second-part idea card-enImage">
+                    <p>Les idées de la communauté</p>
+                </div>
+                <div class="first-part">
+                    <div class="card-enImage comité">
+                        <p>Comité des quartiers</p>
+                    </div>
+
+                    <div class="card-enImage enfants">
+                        <p>Vacances de printemps</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
+    </footer>
+{% endblock %}

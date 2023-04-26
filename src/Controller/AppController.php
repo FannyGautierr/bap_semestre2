@@ -68,4 +68,10 @@ class AppController extends AbstractController
     {
         return $this->render('app/eventVilleneuve.html.twig');
     }
+
+    #[Route('/acceuil', name: 'app_acceuil_villeneuve')]
+    public function accueil(): Response
+    {
+        return $this->render('app/acceuilVilleneuve.html.twig');
+    }
 }

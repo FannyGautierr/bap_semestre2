@@ -505,7 +505,7 @@ body {
     position: relative;
     height: 812px;
     width: 100%;
-    background: url("/assets/images/happy-childs.png");
+    background: url("../images/happy-childs.png");
     background-size: cover;
     background-position: center;
 
@@ -624,7 +624,6 @@ body {
   padding:65px 60px 65px 60px ;
 
   .primary-activity{
-    //width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -716,3 +715,124 @@ body {
 
 }
 
+
+.nav_event{
+  background: rgba(0, 138, 158, 0.7);
+  margin-top: 16px;
+  margin-bottom: 96px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  ul {
+    display: flex;
+    gap: 32px;
+    li {
+      list-style: none;
+      font-size: 29px;
+      text-transform: uppercase;
+
+      a {
+
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+.event_villeneuve{
+  .banner{
+    background-image: url("../images/match-basket-bg.png");
+    width: 100%;
+    height: 812px;
+    display: flex;
+    justify-content: flex-end;
+    .blue-bg{
+
+      border-style: solid;
+      height: 0;
+      width: 90%;
+      border-color: blue transparent rgba(0, 138, 158, 0.7) transparent;
+      border-width: 0 0 812px 900px;
+      display: flex;
+      justify-content: flex-end;
+
+
+    }
+
+  }
+  .banner-text{
+    background: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    padding: 60px 30px 60px 30px;
+    margin-top: 50%;
+    height: fit-content;
+    h2{
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p{
+      font-size: 24px;
+      text-align: left;
+    }
+
+  }
+
+}
+.other-event{
+  background-color: rgba(0, 138, 158, 0.7);
+  gap: 65px;
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  h3{
+    font-size: 48px;
+    font-weight: 400;
+    color: white;
+    padding-top:  80px;
+    padding-left: 100px ;
+  }
+}
+.event-card{
+  width: 240px;
+  height: 367px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding:20px;
+}
+.all-other-event{
+  display: flex;
+  flex-direction : row;
+  gap: 5rem;
+  align-items: center;
+  padding-left: 1%;
+}
+.foot{
+  background-image: url("../images/foot-bg.png");
+}
+.music-card{
+  background-image: url("../images/event-musique.png");
+}
+.theatre-card{
+  background-image: url("../images/event-theatre.png");
+}
+.piscine{
+  background-image: url("../images/piscine-bg.png");
+}
+.icons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.arrow{
+  font-size: 60px;
+  color: white;
+}

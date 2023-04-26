@@ -9,15 +9,30 @@
         width: 20vw;
         height: auto;
     }
+    #link{
+        display: none;
+    }
 </style>
+    <p>Nombre de réponses : {{ nbSubmissions }}</p>
     <p>Tranche d'age min-max :</p>
     {{ age }}
+{#    <hr>#}
+{#    {% for truc in test %}#}
+{#        {{ truc.question.title }} : {{ truc.content }}<br>#}
+{#    {% endfor %}#}
+{#    <hr>#}
 
+    <a id="link" href="{{ "http://127.0.0.1:8000/admin?referrer=/admin?crudAction%3Dindex%26crudControllerFqcn%3DApp%255CController%255CAdmin%255CSurveyCrudController&routeName=survey_stats&routeParams%5Bid%5D="~survey.id~"&routeParams%5Bage%5D=" }}"> COOL LINK</a>
+    <p>Min :</p>
+    <input type="number" id="min">
+    <p>Max :</p>
+    <input type="number" id="max">
+    <button id="submit">Trier</button>
     <div>
         <h3>Questions :</h3>
         <ul>
                 {% for question in survey.questions %}
-                    <li style="color: red">{{ question.title }} | {{ question.type }}</li>
+                    <li style="color: red">{{ question.title }} | {{ question.type }} | {{ question.id }}</li>
                     {% if question.type == 'radio' or question.type == 'checkbox' or question.type == 'select' %}
                         {% for chart in charts %}
                             {% if chart.question == question.id %}
@@ -28,12 +43,30 @@
                         {% endfor %}
                     {% endif %}
                     <ul>
-                        {% for answer in question.answers %}
-                            <li>{{ answer.content }}</li>
+                        {% for answer in allAnswers %}
+                            {% if answer.question.id == question.id %}
+                                <li>{{ answer.content }}</li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 {% endfor %}
         </ul>
     </div>
 
+    <script>
+        let url = document.querySelector("#link")
+        document.querySelector("#submit").addEventListener("click", function () {
+            let min = document.querySelector("#min").value
+            let max = document.querySelector("#max").value
+            if (min > max || min < 0 || max < 0 ){
+                alert("Veuillez entrer des valeurs correctes")
+            }else{
+                let link = url.getAttribute("href")
+                url.setAttribute("href", link+min+","+max)
+                url.click()
+            }
+
+        })
+
+    </script>
 {% endblock %}

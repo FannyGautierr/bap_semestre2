@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Survey;
 use App\Repository\SurveyRepository;
+use App\Repository\AnswerRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -25,24 +26,52 @@ class SurveyCrudController extends AbstractCrudController
 
 
     #[Route('/admin/survey/{id}/stats/{age}', name: 'survey_stats')]
-    public function statistics($id, $age, SurveyRepository $surveyRepository, ChartBuilderInterface $chartBuilder): Response
+    public function statistics($id, $age=null, SurveyRepository $surveyRepository, AnswerRepository $answerRepository,ChartBuilderInterface $chartBuilder): Response
     {
+
         $survey = $surveyRepository->find($id);
         if($survey === null) {
             throw $this->createNotFoundException('Enquête inconnue');
         }
 
+        function getGoodAnswer($question, $allAnswers){
+            $answers =[];
+            foreach ($allAnswers as $answer){
+                if($question->getId() == $answer->getQuestion()->getId()){
+                    $answers[] = $answer;
+                }
+            }
+            return $answers;
+        }
+
+
         $charts = [];
 
-    // filter by age if needed
+        $ageMinMax = [];
+        try {
+            $ageMinMax = explode(',', $age);
+            foreach ($ageMinMax as $key => $value) {
+                $ageMinMax[$key] = (int) $value;
+            }
+        }catch (\Exception $e){
+            $ageMinMax = [1,10];
+        }
+
+        if(count($ageMinMax) != 2){
+            $ageMinMax = [1,150];
+        }
+
+        $allAnswers = $answerRepository->findAnswersByAgeSlice($ageMinMax[0],$ageMinMax[1]);
 
 
         $questions = $survey->getQuestions();
+
         foreach ($questions as $question) {
             switch ($question->getType()){
                 case 'radio':
                     $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
-                    $answers = $question->getAnswers();
+
+                    $answers = getGoodAnswer($question, $allAnswers);
                     $yes = 0;
                     $no = 0;
                     foreach ($answers as $answer) {
@@ -70,7 +99,7 @@ class SurveyCrudController extends AbstractCrudController
 
                 case 'checkbox':
                     $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
-                    $answers = $question->getAnswers();
+                    $answers = getGoodAnswer($question, $allAnswers);
                     //get questions options for labels
                     $options = $question->getQuestionOptions();
                     $labels = [];
@@ -107,7 +136,7 @@ class SurveyCrudController extends AbstractCrudController
 
                 case 'select':
                     $chart = $chartBuilder->createChart(Chart::TYPE_DOUGHNUT);
-                    $answers = $question->getAnswers();
+                    $answers = getGoodAnswer($question, $allAnswers);
                     $options = $question->getQuestionOptions();
                     $labels = [];
                     $data = [];
@@ -141,12 +170,13 @@ class SurveyCrudController extends AbstractCrudController
         }
 
 
-
-
+        //
         return $this->render('admin/stats.html.twig', [
             'survey' => $survey,
             'charts' => $charts,
-            'age' => $age
+            'age' => $age,
+            'allAnswers' => $allAnswers,
+            'nbSubmissions' => $answerRepository->getSubmitterCount($ageMinMax[0],$ageMinMax[1])[0][1],
         ]);
     }
 
@@ -155,7 +185,7 @@ class SurveyCrudController extends AbstractCrudController
         $stats = Action::new('stats', 'Statistiques', 'fa fa-chart-bar')
             ->addCssClass('btn btn-primary')
             ->linkToRoute('survey_stats', function (Survey $survey) {
-                return ['id' => $survey->getId(), 'age' => "all"];
+                return ['id' => $survey->getId(), 'age' => '1,150'];
             });
         return $actions
             ->setPermission(Action::DELETE, 'ROLE_SUPER_ADMIN')
@@ -172,5 +202,6 @@ class SurveyCrudController extends AbstractCrudController
             TextEditorField::new('description'),
         ];
     }
+
 
 }

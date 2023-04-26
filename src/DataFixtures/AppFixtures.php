@@ -7,13 +7,33 @@ use App\Entity\Question;
 use App\Entity\QuestionOption;
 use App\Entity\Submitter;
 use App\Entity\Survey;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    public function __construct(private UserPasswordHasherInterface $passwordHasher)
+    {
+    }
     public function load(ObjectManager $manager): void
     {
+
+        $user = new User();
+        $user->setEmail('a@a.com');
+        $user->setPassword($this->passwordHasher->hashPassword($user, '123'));
+        $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+        $manager->persist($user);
+        $manager->flush();
+
+        $user = new User();
+        $user->setEmail('sa@sa.com');
+        $user->setPassword($this->passwordHasher->hashPassword($user, '123'));
+        $user->setRoles(['ROLE_USER','ROLE_ADMIN','ROLE_SUPER_ADMIN']);
+        $manager->persist($user);
+        $manager->flush();
+
         $survey = new Survey();
         $survey->setName('CiteEducative');
         $survey->setDescription('Formulaire de feedback pour CiteEducative');

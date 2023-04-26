@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Question;
+use App\Entity\QuestionOption;
 use App\Entity\Survey;
 use App\Repository\SurveyRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -79,6 +81,8 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('enquêtes', 'fas fa-list', Survey::class);
+        yield MenuItem::linkToCrud('questions', 'fas fa-list', Question::class);
+        yield MenuItem::linkToCrud('questionsOptions', 'fas fa-list', QuestionOption::class);
         yield MenuItem::linkToLogout('Logout', 'fa-solid fa-arrow-right-from-bracket');
     }
 }

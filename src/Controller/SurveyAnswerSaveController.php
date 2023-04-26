@@ -61,8 +61,8 @@ class SurveyAnswerSaveController extends AbstractController
         }
         $manager->flush();
 
-        return $this->render('survey_answer_save/index.html.twig', [
-            'controller_name' => 'SurveyAnswerSaveController',
+        return $this->render('survey/index.html.twig', [
+            'surveys' => $surveyRepository->findAll(),
         ]);
     }
 }

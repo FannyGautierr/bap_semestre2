@@ -6,10 +6,11 @@
 
     <header>
         <img src="{{ asset('assets/images/vnlg.png') }}" alt="">
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="" class="cite-edu">
     </header>
     <section class="cta">
         <h1>Cité éducative - Villeneuve La Garenne</h1>
-        <a href="#">Donnez-nous votre avis</a>
+        <a href="/survey">Donnez-nous votre avis</a>
     </section>
     <section class="description">
         <h2>La Cité éducative - Qu'est-ce que c'est</h2>
@@ -22,13 +23,16 @@
                 <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                 <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
             </ul>
-            <img src="" alt="">
+            <img src="{{ asset('assets/images/void.png') }}" alt="">
         </div>
     </section>
     <section class="actus">
         <h2>Découvrez d'autres activités</h2>
         <div class="actus__grid">
-            <a href=""></a>
+            <a href="">
+                <img src="{{ asset('assets/images/void.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
             <a href=""></a>
             <a href=""></a>
             <a href=""></a>
@@ -46,6 +50,7 @@
                     <div class="review">
                         <p>{{ review.content }}</p>
                         <span>{{ review.firstName }} - {{ review.age }} ans</span>
+                        <img src="{{ asset('assets/images/parole.svg') }}" alt="">
                     </div>
                 {% endfor %}
             </div>
@@ -68,12 +73,21 @@
 
                 reviewsEl.scrollBy({
                     top: 0,
-                    left: reviewsEl.clientWidth * direction,
+                    left: (reviewsEl.offsetWidth + 10) * direction,
                     behavior: 'smooth'
                 })
             })
 
         })
+
+        function setChildWidth() {
+            let width = document.querySelector('.reviews').offsetWidth
+            document.documentElement.style.setProperty('--child-width', width + "px")
+            document.documentElement.style.setProperty('--child-number', Math.round(document.querySelectorAll('.review').length / 2))
+        }
+
+        setChildWidth()
+        window.addEventListener('resize', () => setChildWidth())
     </script>
 
 {% endblock %}

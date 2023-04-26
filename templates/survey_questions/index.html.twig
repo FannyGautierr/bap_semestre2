@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SurveyQuestionsController!{% endblock %}
+
+{% block body %}
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+
+    <div class="survey-questions">
+
+        <form action="{{ path('app_survey_answer_save') }}" method="POST">
+            <input type="hidden" name="survey_ID" value="{{ survey.id }}">
+
+            {% for index, question in questions %}
+                <div class="question {% if index != 0 %}hidden{% endif %}" id="question-{{ index }}">
+                    <h2>{{ question.title }}</h2>
+
+                    {% if question.type == 'textarea' %}
+                        <textarea name="{{ question.id }}" value=""></textarea>
+
+                    {% elseif question.type == 'select' %}
+                        <select name="{{ question.id }}" id="{{ question.title }}">
+                            <option value="">--Please choose an option--</option>
+                            {% for option in question.questionOptions %}
+                                <option value="{{ option.choice }}">{{ option.choice }}</option>
+                            {% endfor %}
+                        </select>
+
+                    {% elseif question.type == 'radio' %}
+                        <h2>aaaaa</h2>
+                        {% for option in question.questionOptions %}
+                            <input type="radio" name="{{ question.id }}" value="{{ option.choice }}">
+                            <label for="{{ option.id }}">{{ option.choice }}</label>
+                        {% endfor %}
+
+                    {% else %}
+                        {% for option in question.questionOptions %}
+                            <div>
+                                <input type="{{ question.type }}" name="{{ question.id }}" value="{{ option.choice }}">
+                                <label for="{{ option.id }}">{{ option.choice }}</label>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+            <div class="navigation">
+                <button type="button" class="prev" id="prev-btn" onclick="prevQuestion()">Précédent</button>
+                <button type="button" class="next" id="next-btn" onclick="nextQuestion()">Suivant</button>
+            </div>
+            <input type="submit" class="submit hidden" name="submit" id="submit"/>
+        </form>
+
+    </div>
+
+    <script>
+        var currentQuestion = 0;
+        var questions = document.querySelectorAll('.question');
+        var prevBtn = document.getElementById('prev-btn');
+        var nextBtn = document.getElementById('next-btn');
+        var submit = document.getElementById('submit')
+        console.log(submit)
+
+        function prevQuestion() {
+            questions[currentQuestion].classList.add('hidden');
+            currentQuestion--;
+            questions[currentQuestion].classList.remove('hidden');
+            updateButtons();
+        }
+
+        function nextQuestion() {
+            questions[currentQuestion].classList.add('hidden');
+            currentQuestion++;
+            questions[currentQuestion].classList.remove('hidden');
+            updateButtons();
+        }
+
+        function updateButtons() {
+            if (currentQuestion === 0) {
+                prevBtn.setAttribute('disabled', true);
+            } else if (currentQuestion === questions.length - 1) {
+                submit.classList.remove('hidden')
+                nextBtn.classList.add('hidden')
+            } else {
+                prevBtn.removeAttribute('disabled');
+                nextBtn.textContent = 'Suivant';
+                nextBtn.classList.remove('hidden')
+                submit.classList.add('hidden')
+            }
+        }
+
+        updateButtons();
+    </script>
+
+{% endblock %}

@@ -62,4 +62,10 @@ class AppController extends AbstractController
     {
         return $this->render('app/event.html.twig');
     }
+
+    #[Route('/actualite', name: 'app_event')]
+    public function actualite(): Response
+    {
+        return $this->render('app/actu.html.twig');
+    }
 }

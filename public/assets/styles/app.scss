@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -503,7 +505,7 @@ body {
     position: relative;
     height: 812px;
     width: 100%;
-    background: url("/assets/images/happy-childs.png");
+    background: url("../images/happy-childs.png");
     background-size: cover;
     background-position: center;
 
@@ -694,7 +696,6 @@ body {
   }
 
   .primary-activity{
-    //width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -727,6 +728,7 @@ body {
       h3{
         font-weight: 400;
         font-size: 42px;
+        font-family: 'Cabin', sans-serif;
       }
 
     }
@@ -737,10 +739,11 @@ body {
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
+    font-family: 'Cabin', sans-serif;
     p{
       background: rgba(255, 255, 255, 0.7);
       font-size: 32px;
-      padding: 6px 22px 6px 38px;
+      padding: 6px 38px  6px  22px;
     }
 
   }
@@ -788,6 +791,7 @@ body {
 
 }
 
+<<<<<<< HEAD
 body {
   .actu__header {
     height: 143px;
@@ -992,4 +996,316 @@ body {
       }
     }
   }
+}
+
+.nav_event{
+  background: rgba(0, 138, 158, 0.7);
+  margin-top: 16px;
+  margin-bottom: 96px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  ul {
+    display: flex;
+    gap: 32px;
+    li {
+      list-style: none;
+      font-size: 29px;
+      text-transform: uppercase;
+
+      a {
+
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+.event_villeneuve{
+  .banner{
+    background-image: url("../images/match-basket-bg.png");
+    width: 100%;
+    height: 812px;
+    display: flex;
+    justify-content: flex-end;
+    .blue-bg{
+
+      border-style: solid;
+      height: 0;
+      width: 90%;
+      border-color: blue transparent rgba(0, 138, 158, 0.7) transparent;
+      border-width: 0 0 812px 900px;
+      display: flex;
+      justify-content: flex-end;
+
+
+    }
+
+  }
+  .banner-text{
+    background: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    padding: 60px 30px 60px 30px;
+    margin-top: 50%;
+    height: fit-content;
+    h2{
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p{
+      font-size: 24px;
+      text-align: left;
+    }
+
+  }
+
+}
+.other-event{
+  background-color: rgba(0, 138, 158, 0.7);
+  gap: 65px;
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  h3{
+    font-size: 48px;
+    font-weight: 400;
+    color: white;
+    padding-top:  80px;
+    padding-left: 100px ;
+  }
+}
+.event-card{
+  width: 240px;
+  height: 367px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding:20px;
+}
+.all-other-event{
+  display: flex;
+  flex-direction : row;
+  gap: 5rem;
+  align-items: center;
+  padding-left: 1%;
+}
+.foot{
+  background-image: url("../images/foot-bg.png");
+}
+.music-card{
+  background-image: url("../images/event-musique.png");
+}
+.theatre-card{
+  background-image: url("../images/event-theatre.png");
+}
+.piscine{
+  background-image: url("../images/piscine-bg.png");
+}
+.icons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.arrow{
+  font-size: 60px;
+  color: white;
+}
+
+.seperate{
+  height: 1px;
+  width: 50%;
+  margin: 0 auto;
+  background-color: black;
+  margin-top:90px;
+  margin-bottom: 50px;
+
+}
+.acceuil_villeneuve{
+  H2{
+    font-size: 64px;
+    text-transform: uppercase;
+    color: #EF6767;
+    text-align: center;
+    margin-top: -50px;
+  }
+  H3{
+    font-size: 64px;
+    font-weight: 400;
+    color: #EF6767;
+    margin-top: 53px;
+
+  }
+  .banner-acceuil{
+    background-image: url("../images/sport-bg.png");
+    height: 642px;
+    display: flex;
+    align-items: flex-end;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-top: 30px;
+
+    p{
+      background: rgba(217, 217, 217, 1);
+      width: 65%;
+      font-size: 60px;
+      padding: 10px 127px 10px 127px;
+      text-transform: uppercase;
+    }
+  }
+  .banner{
+    margin-top: 58px;
+    background: linear-gradient(91.59deg, rgba(96, 42, 121, 0.7) 0%, rgba(239, 103, 103, 0.7) 100%);
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+    padding-left: 36px;
+
+    .title-banner{
+      font-size: 48px;
+      color: white;
+      margin-bottom: 27px;
+    }
+
+    .info{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 50px;
+      color: white;
+
+      .little-info{
+        color: white;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        p{
+          color: white;
+          font-size: 28px;
+        }
+      }
+
+    }
+    .button-inscrit{
+      background-color: white;
+      border-radius: 15px;
+      height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 11px 50px 11px 50px;
+      width: min-content;
+      text-align: center;
+      margin-right: 32px;
+      p{
+        color: black;
+        font-size: 32px;
+      }
+    }
+  }
+  .gallery-image{
+    display: flex;
+    flex-direction: row;
+    height: 645px;
+    gap: 93px;
+    margin: 89px;
+    p{
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 39px;
+      font-weight: 300;
+      padding: 6px 38px  6px  22px;
+      margin-bottom: 20px;
+
+    }
+    .vieux-monsieur{
+      background-image: url("../images/bg-enImage.png");
+      background-size: cover;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+    }
+    .centreadmin{
+      background-image: url("../images/bg-enImage2.png");
+      background-size: cover;
+      height: 50%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    .ecole{
+      background-image: url("../images/bg-enImage3.png");
+      background-size: cover;
+      height: 50%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    .first-part{
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      height: 100%;
+      gap: 32px;
+      .card-enImage{
+        height: 50%;
+      }
+
+    }
+    .second-part{
+      width: 60%;
+      height: 100%;
+
+
+    }
+  }
+  .et_aussi_section{
+    background-color: rgba(0, 138, 158, 0.7);
+    padding-top: 50px;
+    padding-bottom: 151px;
+    H4{
+      color: white;
+      font-size: 64px;
+      margin-left: 225px;
+
+    }
+
+    .comité{
+      background-image: url("../images/comité.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .idea{
+      background-image: url("../images/idea.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .enfants{
+      background-image: url("../images/enfant.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+}
+.card-enImage{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+h3{
+  margin:  0px 180px  48px 180px;
+
 }

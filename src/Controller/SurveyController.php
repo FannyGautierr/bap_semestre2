@@ -17,18 +17,4 @@ class SurveyController extends AbstractController
             'surveys' => $surveys,
         ]);
     }
-
-    public function details($id, SurveyRepository $surveyRepository)
-    {
-        $survey = $surveyRepository
-            ->find($id);
-
-        $questions = $survey->getQuestions();
-
-        return $this->render('survey/details.html.twig', [
-            'survey' => $survey,
-            'questions' => $questions,
-        ]);
-        //ZZ
-    }
 }

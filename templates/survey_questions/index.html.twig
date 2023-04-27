@@ -182,6 +182,11 @@
     <div class="survey-questions">
 
         <h2 class="feedback">Votre avis compte pour nous!</h2>
+        <div class="surv_desc">
+            <p>
+                {{ survey.description | striptags }}
+            </p>
+        </div>
         <span class="small-line"></span>
 
         <form action="{{ path('app_survey_answer_save') }}" method="POST">

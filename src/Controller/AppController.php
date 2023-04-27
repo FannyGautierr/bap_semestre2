@@ -18,24 +18,24 @@ class AppController extends AbstractController
         return $this->render('app/index.html.twig', [
             'reviews' => [
                 [
-                    'content' => 'Super utile pour mes cours en ligne!',
-                    'firstName' => 'Sarah',
-                    'age' => 25
+                    'content' => 'Très bonnes activités !',
+                    'firstName' => 'Marie',
+                    'age' => 41
                 ],
                 [
-                    'content' => 'Je suis accro à cette plateforme éducative',
-                    'firstName' => 'Nicolas',
-                    'age' => 32
+                    'content' => 'Toujours aussi ludique.',
+                    'firstName' => 'Arthur',
+                    'age' => 34
                 ],
                 [
-                    'content' => 'J\'adore apprendre de nouvelles choses ici',
-                    'firstName' => 'Emma',
-                    'age' => 19
+                    'content' => 'Très bonne initiative !!!',
+                    'firstName' => 'Melanie',
+                    'age' => 38
                 ],
                 [
-                    'content' => 'Le contenu est vraiment intéressant et bien structuré',
-                    'firstName' => 'Marc',
-                    'age' => 45
+                    'content' => 'Mes petits enfants étaient ravis!',
+                    'firstName' => 'Josette',
+                    'age' => 53
                 ],
                 [
                     'content' => 'Je recommande vivement pour les étudiants en herbe',

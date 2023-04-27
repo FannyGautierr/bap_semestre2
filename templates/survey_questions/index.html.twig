@@ -104,7 +104,7 @@
 
         .feedback {
             margin-top: 2em;
-            margin-bottom: 2em;
+            margin-bottom: 0.5em;
 
             color: #EF6767;
             font-size: 64px;
@@ -171,6 +171,12 @@
 
     <div class="cite-banner">
         <img src="{{ asset('assets/images/image.png') }}" alt="logo-cite-edu">
+    </div>
+
+    <div>
+        <p>
+            <a href="/survey">Retour</a>
+        </p>
     </div>
 
     <div class="survey-questions">
@@ -240,11 +246,11 @@
             <span class="small-line"></span>
         </form>
     </div>
-
+    <div style="width: 100%; display: flex; align-items: center; justify-content: center">
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
+    </div>
     <footer>
-        <div style="width: 100%">
-            <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
-        </div>
+
     </footer>
     <script>
         let currentQuestion = 0;

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AppController!{% endblock %}
+
+{% block body %}
+
+<header class="actu__header">
+    <img src="{{ asset('assets/images/vnlg.png') }}" alt="">
+</header>
+<nav class="actu__nav">
+    <ul>
+        <li><a href="/accueil">Accueil</a></li>
+        <li><a href="/actualite">Découvrir</a></li>
+        <li><a href="#">A tout Age</a></li>
+        <li><a href="/event2">S’impliquer</a></li>
+        <li><a href="#">Entreprendre</a></li>
+
+    </ul>
+</nav>
+<main class="actu__main">
+    <section>
+        <div class="image">
+            <img src="{{ asset('assets/images/win.png') }}" alt="">
+            <p>Spécial Rénovation énergétique : rdv le 3 juin</p>
+        </div>
+
+        <h2>La rénovation énergétique nous concerne tous</h2>
+        <p class="ff"> En travaillant ensemble pour investir dans des solutions énergétiques durables et réduire notre empreinte carbone, nous pouvons créer un avenir plus propre et plus durable pour les générations à venir.</p>
+
+        <h2>Comment participer ?</h2>
+        <p class="ff">Nous pouvons tous apporter notre contribution à la transition énergétique en adoptant des comportements plus responsables et en soutenant les initiatives visant à améliorer l'efficacité énergétique. </p>
+    </section>
+    <section class="actu__actus">
+        <h2>Découvrez d'autres activités</h2>
+        <div class="actus__grid">
+            <a href="">
+                <img src="{{ asset('assets/images/centre-add.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/tryhard.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/lecture.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/think.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/velo.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+        </div>
+    </section>
+</main>
+{% endblock %}

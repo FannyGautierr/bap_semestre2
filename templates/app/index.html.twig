@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <header>
+        <img src="{{ asset('assets/images/vnlg.png') }}" alt="">
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="" class="cite-edu">
+    </header>
+
+    <nav class="event__nav">
+        <ul>
+            <li><a href="/actualite">Découvrir</a></li>
+            <li><a href="#">A tout Age</a></li>
+            <li><a href="/event">S’impliquer</a></li>
+        </ul>
+    </nav>
+
+    <section class="cta">
+        <!--<h1>Cité éducative - Villeneuve La Garenne</h1>-->
+        <img src="{{ asset('assets/images/logo-blanc-CE.png') }}" alt="">
+        <a href="/survey">Donnez-nous votre avis</a>
+    </section>
+    <section class="description">
+        <h2>La Cité éducative - Qu'est-ce que c'est</h2>
+        <div>
+            <ul>
+                <li>La Cité éducative, de son élaboration à sa mise en œuvre concrète dans les territoires, encourage et favorise la concertation d’acteurs.</li>
+                <li>Dès la demande d’attribution du label, Recteurs et Préfets identifient les territoires prioritaires. Dans le cadre de l’élaboration des projets, les acteurs de chacun des territoires sont invités à s’accorder sur un diagnostic partagé qui leur permet ensuite de co-construire leur projet éducatif.</li>
+                <li>L’ambition du projet et sa structuration repose sur les besoins spécifiques de chaque territoire.</li>
+            </ul>
+            <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
+        </div>
+    </section>
+    <section class="actus">
+        <h2>Découvrez d'autres activités</h2>
+        <div class="actus__grid">
+            <a href="">
+                <img src="{{ asset('assets/images/event-conte.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/event-theatre.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/event-musique.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/lune.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/danse.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+            <a href="">
+                <img src="{{ asset('assets/images/event-conte.png') }}" alt="">
+                <span>Voir plus <img src="{{ asset('assets/images/arrow.png') }}" alt=""></span>
+            </a>
+        </div>
+    </section>
+    <section class="avis">
+        <h2>Découvrez les avis</h2>
+        <div class="reviews__out">
+            <img src="{{ asset('assets/images/arrow.png') }}" alt="" class="arrow left">
+            <img src="{{ asset('assets/images/arrow.png') }}" alt="" class="arrow right">
+            <div class="reviews">
+                {% for review in reviews %}
+                    <div class="review">
+                        <p>{{ review.content }}</p>
+                        <span>{{ review.firstName }} - {{ review.age }} ans</span>
+                        <img src="{{ asset('assets/images/parole.svg') }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="re-cta">
+        <h2>Votre avis nous intéresse !</h2>
+        <a href="/survey">Donnez-nous votre avis</a>
+    </section>
+    <footer>
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
+    </footer>
+
+    <script>
+        let arrows = document.querySelectorAll('.arrow')
+        let reviewsEl = document.querySelector('.reviews')
+        arrows.forEach(arrow => {
+            arrow.addEventListener('click', (e) => {
+                let direction = e.target.classList.contains('right') ? 1 : -1
+
+                reviewsEl.scrollBy({
+                    top: 0,
+                    left: (reviewsEl.offsetWidth + 10) * direction,
+                    behavior: 'smooth'
+                })
+            })
+
+        })
+
+        function setChildWidth() {
+            let width = document.querySelector('.reviews').offsetWidth
+            document.documentElement.style.setProperty('--child-width', width + "px")
+            document.documentElement.style.setProperty('--child-number', Math.round(document.querySelectorAll('.review').length / 2))
+        }
+
+        setChildWidth()
+        window.addEventListener('resize', () => setChildWidth())
+    </script>
+
+{% endblock %}

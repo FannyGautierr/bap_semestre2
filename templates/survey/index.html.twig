@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SurveyController!{% endblock %}
+
+{% block body %}
+<style>
+    .vnlg{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-top: 2em;
+    }
+
+    .cite-banner{
+        width: 100%;
+        height: 20.5em;
+        background: linear-gradient(90deg, rgba(96, 42, 121, 0.7) 0%, #EF6767 100%);
+
+        margin-top: 1.375em;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cite-banner img {
+        width: 25%;
+    }
+
+    .main {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .surveys{
+        width: 80%;
+        margin-top: 2em;
+    }
+</style>
+
+    <div class="vnlg">
+        <img src="{{ asset('assets/images/vnlg.png') }}" alt="logo-vileneuve">
+    </div>
+
+    <!--
+    <nav class="event__nav">
+        <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/actualite">Découvrir</a></li>
+            <li><a href="#">A tout Age</a></li>
+            <li><a href="/event">S’impliquer</a></li>
+
+        </ul>
+    </nav>
+    -->
+
+    <div class="cite-banner">
+        <img src="{{ asset('assets/images/image.png') }}" alt="logo-cite-edu">
+    </div>
+
+    <a href="/">Accueil</a>
+
+    <div class="main">
+        <div class="surveys">
+            <h1>Formulaire(s) disponible(s)</h1>
+            <ul>
+                {% for survey in surveys %}
+                    <li>
+                        <a href="/survey/questions/{{ survey.id }}">
+                            {{ survey.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

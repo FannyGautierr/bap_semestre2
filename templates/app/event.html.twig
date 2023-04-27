@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AppController!{% endblock %}
+
+{% block body %}
+
+
+<header class="event__header">
+    <img src="{{ asset('assets/images/vnlg.png') }}" alt="">
+</header>
+<nav class="event__nav">
+    <ul>
+        <li><a href="/actualite">Découvrir</a></li>
+        <li><a href="#">A tout Age</a></li>
+        <li><a href="/event">S’impliquer</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="event__intro">
+        <div class="left">
+            <h2>Tous a vos livres </h2>
+            <p>La lecture est une activité essentielle pour le développement de l'imagination, de la créativité et de la pensée critique. En lisant, on voyage dans des mondes imaginaires, on découvre de nouveaux horizons, on apprend de nouvelles connaissances et on s'ouvre à de nouvelles perspectives.</p>
+        </div>
+    </section>
+    <section class="event__info">
+        <hr>
+        <h2>Quelques informations :</h2>
+        <div class="container">
+            <div>
+                <ul>
+                    <li>Élargissez vos horizons avec des sujets variés.</li>
+                    <li>Joignez-vous à une communauté mondiale d'apprenants.</li>
+                    <li>Investissez dans votre avenir avec une éducation de qualité.</li>
+                </ul>
+                <div>
+                    <span>
+                        <img src="{{ asset('assets/images/User.svg') }}" alt="">
+                        28 inscrits
+                    </span>
+                    <span>
+                        <img src="{{ asset('assets/images/Clock.svg') }}" alt="">
+                        13:00 h
+                    </span>
+                    <span>
+                        <img src="{{ asset('assets/images/Calendar.svg') }}" alt="">
+                        7 juin 2023
+                    </span>
+                    <span>
+                        <img src="{{ asset('assets/images/Mail.svg') }}" alt="">
+                        mail@mail.com
+                    </span>
+                </div>
+            </div>
+            <div>
+                <h3>Où nous retrouver ?</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20967.605666543255!2d2.302481931644055!3d48.935380657688135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6692ce0d2148b%3A0x1ba303435cbcb67c!2s92390%20Villeneuve-la-Garenne!5e0!3m2!1sfr!2sfr!4v1682424475280!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <a href="">S'inscrire</a>
+    </section>
+    <div class="other-activities">
+        <div class="primary-activity">
+            <h3 class="title">D’autres activités qui pourrait vous plaire :</h3>
+            <div class="card-conte">
+                <div></div>
+                <div class="card-title">
+                    <h3>Conte et fantasie</h3>
+                    <p>Laissez libre cours à votre imagination et vivez des aventures incroyables au travers d'histoires captivantes.</p>
+                </div>
+            </div>
+        </div>
+        <div class="little-activities">
+
+            <div class="card-secondaire musique">
+                <div class="little-title-card">
+                    <p>Musica</p>
+                    <p>Voir plus &#x25B6</p>
+                </div>
+            </div>
+
+            <div class="card-secondaire theatre">
+                <div class="little-title-card">
+                    <p>Théatre</p>
+                    <p>Voir plus &#x25B6</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+    <footer>
+        <img src="{{ asset('assets/images/cite-edu.png') }}" alt="">
+    </footer>
+{% endblock %}

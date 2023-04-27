@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Question;
 use App\Entity\QuestionOption;
 use App\Entity\Survey;
+use App\Entity\User;
 use App\Repository\SurveyRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -25,42 +26,11 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        $chart = $this->makeChart();
 
-
-
-        return $this->render('admin/index.html.twig', [
-            'chart' => $chart,
-        ]);
+        return $this->render('admin/index.html.twig', []);
 
     }
 
-    public function makeChart() {
-        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
-
-        $chart->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            'datasets' => [
-                [
-                    'label' => 'My First dataset',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
-                ],
-            ],
-        ]);
-
-        $chart->setOptions([
-            'scales' => [
-                'y' => [
-                    'suggestedMin' => 0,
-                    'suggestedMax' => 100,
-                ],
-            ],
-        ]);
-
-        return $chart;
-    }
 
     public function configureAssets(): Assets
     {
@@ -80,9 +50,10 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('enquêtes', 'fas fa-list', Survey::class);
-        yield MenuItem::linkToCrud('questions', 'fas fa-list', Question::class);
-        yield MenuItem::linkToCrud('questionsOptions', 'fas fa-list', QuestionOption::class);
+        yield MenuItem::linkToCrud('Enquêtes', 'fa-solid fa-square-poll-horizontal', Survey::class);
+        yield MenuItem::linkToCrud('Questions', 'fa-solid fa-clipboard-question', Question::class)->setPermission('ROLE_SUPER_ADMIN');
+        yield MenuItem::linkToCrud('Questions Options', 'fa-solid fa-gear', QuestionOption::class)->setPermission('ROLE_SUPER_ADMIN');;
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-users', User::class)->setPermission('ROLE_SUPER_ADMIN');
         yield MenuItem::linkToLogout('Logout', 'fa-solid fa-arrow-right-from-bracket');
     }
 }

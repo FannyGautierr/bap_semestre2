@@ -4,9 +4,21 @@
     Dashboard
 {% endblock %}
 
-{% block content_title %}Statistiques{% endblock %}
+{% block content_title %}Guide{% endblock %}
 
 {% block main %}
-    ff
-    {{ render_chart(chart) }}
+{#if admin role admin #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <h2>Admin :</h2>
+        <p>En tant qu'administrateur, vous avez accès aux réponses des formulaires envoyés par les utilisateurs en vous rendant dans la section "Enquête" et en sélectionnant l'option "Statistiques" de l'enquête souhaitée.<br>
+
+            Cette fonctionnalité vous permet de visualiser les résultats sous forme de graphiques et de texte, ce qui facilite l'analyse des données. Vous pouvez également filtrer les réponses en fonction des critères pertinents pour votre étude.<br>
+
+            Il est important de noter que les réponses des utilisateurs sont confidentielles et ne doivent pas être partagées sans leur consentement. Assurez-vous donc de respecter les politiques de confidentialité et de garantir la sécurité des données collectées.<br></p>
+    {%endif%}
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <h2>Super Admin :</h2>
+        <p>En tant que super administrateur, vous disposez de privilèges supplémentaires par rapport à l'administrateur. Vous avez accès à toutes les fonctionnalités de l'administrateur.<br>
+            En plus de cela, vous pouvez également gérer les enquêtes, les questions et les utilisateurs. Vous pouvez éditer, lire, supprimer et modifier ces éléments en fonction de vos besoins en vous rendant dans les différentes sections correspondantes. Cette fonctionnalité vous permet de personnaliser les enquêtes et les formulaires en fonction de vos objectifs.</p>
+    {%endif%}
 {% endblock %}

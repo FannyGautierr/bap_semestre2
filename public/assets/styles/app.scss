@@ -680,7 +680,7 @@ body {
   }
 }
 
-.other-activities{
+.other-activities {
   background-color: rgba(0, 138, 158, 0.7);
   display: flex;
   flex-direction: row;
@@ -688,14 +688,14 @@ body {
   align-items: center;
 
 
-  padding:65px 60px 65px 60px ;
+  padding: 65px 60px 65px 60px;
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
     gap: 44px;
   }
 
-  .primary-activity{
+  .primary-activity {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -703,7 +703,8 @@ body {
     gap: 55px;
     margin-top: -40px;
   }
-  .card-conte{
+
+  .card-conte {
     background-image: url('../images/event-conte.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -717,7 +718,7 @@ body {
       width: 100%;
     }
 
-    .card-title{
+    .card-title {
 
       background: rgba(255, 255, 255, 0.7);
       width: 90%;
@@ -725,7 +726,8 @@ body {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      h3{
+
+      h3 {
         font-weight: 400;
         font-size: 42px;
         font-family: 'Cabin', sans-serif;
@@ -733,21 +735,24 @@ body {
 
     }
   }
-  .little-title-card{
+
+  .little-title-card {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
     font-family: 'Cabin', sans-serif;
-    p{
+
+    p {
       background: rgba(255, 255, 255, 0.7);
       font-size: 32px;
-      padding: 6px 38px  6px  22px;
+      padding: 6px 38px 6px 22px;
     }
 
   }
-  .little-activities{
+
+  .little-activities {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -759,7 +764,7 @@ body {
       width: 100%;
     }
 
-    .theatre{
+    .theatre {
       background-image: url('../images/event-theatre.png');
       background-repeat: no-repeat;
       background-size: cover;
@@ -770,7 +775,8 @@ body {
 
 
     }
-    .musique{
+
+    .musique {
       background-image: url('../images/event-musique.png');
       background-repeat: no-repeat;
       background-size: cover;
@@ -783,15 +789,13 @@ body {
     }
   }
 
-  .title{
+  .title {
     font-size: 40px;
     font-weight: 400;
     color: white;
   }
-
 }
 
-<<<<<<< HEAD
 body {
   .actu__header {
     height: 143px;

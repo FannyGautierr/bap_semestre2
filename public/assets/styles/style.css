@@ -482,6 +482,11 @@ body .event__nav ul li {
   font-size: 29px;
   text-transform: uppercase;
 }
+@media screen and (max-width: 1024px) {
+  body .event__nav ul li {
+    font-size: 16px;
+  }
+}
 body .event__nav ul li a {
   color: #FFFFFF;
 }

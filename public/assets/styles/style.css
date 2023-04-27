@@ -121,7 +121,7 @@ body .description > div ul li {
 }
 body .description > div img {
   width: 45%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 @media screen and (max-width: 768px) {
@@ -357,7 +357,7 @@ body .avis .reviews__out .reviews .review {
 }
 body .avis .reviews__out .reviews .review p {
   font-style: italic;
-  font-size: 36px;
+  font-size: 24px;
   color: #706F6F;
 }
 @media screen and (max-width: 768px) {
@@ -439,7 +439,8 @@ body footer {
 }
 @media screen and (max-width: 768px) {
   body footer {
-    height: 107px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 }
 body footer img {
@@ -953,6 +954,12 @@ body .actu__main .actu__actus .actus__grid a span img {
   display: grid;
   place-items: center;
 }
+@media screen and (max-width: 1024px) {
+  .nav_event {
+    width: 100%;
+    overflow: hidden;
+  }
+}
 .nav_event ul {
   display: flex;
   gap: 32px;
@@ -961,6 +968,12 @@ body .actu__main .actu__actus .actus__grid a span img {
   list-style: none;
   font-size: 29px;
   text-transform: uppercase;
+}
+@media screen and (max-width: 1024px) {
+  .nav_event ul li {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 .nav_event ul li a {
   color: #FFFFFF;
@@ -1036,21 +1049,54 @@ body .actu__main .actu__actus .actus__grid a span img {
   align-items: center;
   padding-left: 1%;
 }
+@media screen and (max-width: 1024px) {
+  .all-other-event {
+    gap: 1%;
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .all-other-event p {
+    display: none;
+  }
+}
 
 .foot {
   background-image: url("../images/foot-bg.png");
+}
+@media screen and (max-width: 1024px) {
+  .foot {
+    width: 49.5%;
+    margin-bottom: 1rem;
+  }
 }
 
 .music-card {
   background-image: url("../images/event-musique.png");
 }
+@media screen and (max-width: 1024px) {
+  .music-card {
+    width: 49.5%;
+  }
+}
 
 .theatre-card {
   background-image: url("../images/event-theatre.png");
 }
+@media screen and (max-width: 1024px) {
+  .theatre-card {
+    width: 49.5%;
+  }
+}
 
 .piscine {
   background-image: url("../images/piscine-bg.png");
+}
+@media screen and (max-width: 1024px) {
+  .piscine {
+    width: 49.5%;
+    margin-bottom: 1rem;
+  }
 }
 
 .icons {
@@ -1081,6 +1127,11 @@ body .actu__main .actu__actus .actus__grid a span img {
   text-align: center;
   margin-top: -50px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve H2 {
+    font-size: 24px;
+  }
+}
 .acceuil_villeneuve H3 {
   font-size: 64px;
   font-weight: 400;
@@ -1089,6 +1140,8 @@ body .actu__main .actu__actus .actus__grid a span img {
 }
 .acceuil_villeneuve .banner-acceuil {
   background-image: url("../images/sport-bg.png");
+  background-size: cover;
+  background-position: center;
   height: 642px;
   display: flex;
   align-items: flex-end;
@@ -1096,12 +1149,24 @@ body .actu__main .actu__actus .actus__grid a span img {
   margin-right: 90px;
   margin-top: 30px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .banner-acceuil {
+    margin: 0;
+  }
+}
 .acceuil_villeneuve .banner-acceuil p {
   background: rgb(217, 217, 217);
   width: 65%;
   font-size: 60px;
   padding: 10px 127px 10px 127px;
   text-transform: uppercase;
+}
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .banner-acceuil p {
+    font-size: 16px;
+    padding: 0.5rem;
+    width: auto;
+  }
 }
 .acceuil_villeneuve .banner {
   margin-top: 58px;
@@ -1114,10 +1179,21 @@ body .actu__main .actu__actus .actus__grid a span img {
   padding: 10px;
   padding-left: 36px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .banner {
+    width: 90%;
+    flex-direction: column;
+  }
+}
 .acceuil_villeneuve .banner .title-banner {
   font-size: 48px;
   color: white;
   margin-bottom: 27px;
+}
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .banner .title-banner {
+    font-size: 16px;
+  }
 }
 .acceuil_villeneuve .banner .info {
   display: flex;
@@ -1137,6 +1213,11 @@ body .actu__main .actu__actus .actus__grid a span img {
   color: white;
   font-size: 28px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .banner .info .little-info p {
+    font-size: 10px;
+  }
+}
 .acceuil_villeneuve .banner .button-inscrit {
   background-color: white;
   border-radius: 15px;
@@ -1153,6 +1234,11 @@ body .actu__main .actu__actus .actus__grid a span img {
   color: black;
   font-size: 32px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .banner .button-inscrit p {
+    font-size: 10px;
+  }
+}
 .acceuil_villeneuve .gallery-image {
   display: flex;
   flex-direction: row;
@@ -1160,12 +1246,30 @@ body .actu__main .actu__actus .actus__grid a span img {
   gap: 93px;
   margin: 89px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .gallery-image {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .gallery-image {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+  }
+}
 .acceuil_villeneuve .gallery-image p {
   background: rgba(255, 255, 255, 0.7);
   font-size: 39px;
   font-weight: 300;
   padding: 6px 38px 6px 22px;
   margin-bottom: 20px;
+}
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .gallery-image p {
+    font-size: 16px;
+  }
 }
 .acceuil_villeneuve .gallery-image .vieux-monsieur {
   background-image: url("../images/bg-enImage.png");
@@ -1197,6 +1301,12 @@ body .actu__main .actu__actus .actus__grid a span img {
   height: 100%;
   gap: 32px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .gallery-image .first-part {
+    width: 100%;
+    gap: 1rem;
+  }
+}
 .acceuil_villeneuve .gallery-image .first-part .card-enImage {
   height: 50%;
 }
@@ -1204,15 +1314,36 @@ body .actu__main .actu__actus .actus__grid a span img {
   width: 60%;
   height: 100%;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .gallery-image .second-part {
+    width: 100%;
+  }
+}
 .acceuil_villeneuve .et_aussi_section {
   background-color: rgba(0, 138, 158, 0.7);
   padding-top: 50px;
   padding-bottom: 151px;
 }
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .et_aussi_section {
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 50px;
+    margin-bottom: 75px;
+    margin-top: 75px;
+  }
+}
 .acceuil_villeneuve .et_aussi_section H4 {
   color: white;
   font-size: 64px;
   margin-left: 225px;
+}
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve .et_aussi_section H4 {
+    font-size: 20px;
+    margin-left: 0;
+    text-align: center;
+  }
 }
 .acceuil_villeneuve .et_aussi_section .comité {
   background-image: url("../images/comité.png");
@@ -1229,15 +1360,21 @@ body .actu__main .actu__actus .actus__grid a span img {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.acceuil_villeneuve h3 {
+  margin: 0px 180px 48px 180px;
+}
+@media screen and (max-width: 1024px) {
+  .acceuil_villeneuve h3 {
+    margin: 24px 0;
+    font-size: 24px;
+    text-align: center;
+  }
+}
 
 .card-enImage {
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
-}
-
-h3 {
-  margin: 0px 180px 48px 180px;
 }
 
 /*# sourceMappingURL=style.css.map */
